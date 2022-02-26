@@ -16,13 +16,14 @@ async function startServer(typeDefs: undefined, resolvers: undefined) {
 
   app.use(express.json())
 
-  app.use(express.urlencoded({ extended: false }))
+  app.use(express.urlencoded({ extended: true }))
 
   const httpServer = http.createServer(app)
 
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }: any) => ({ req }),
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
   })
 

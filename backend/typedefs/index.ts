@@ -17,9 +17,12 @@ const typeDefs = gql`
     title: String!
     content: String!
     username: String!
+    createdAt: String
+    author: String!
   }
   type Query {
     getPosts: [Post]
+    getPostbyId(postId: ID!): Post
   }
   input RegisterInput {
     username: String!
@@ -27,8 +30,15 @@ const typeDefs = gql`
     confirmPassword: String!
     email: String!
   }
+  input PostCreateInput {
+    title: String!
+    content: String!
+  }
   type Mutation {
     register(registerInput: RegisterInput!): User!
+    login(username: String!, password: String!): User!
+    createPost(postCreateInput: PostCreateInput!): Post
+    # deletePost(postId: ID!): String!
   }
 `
 module.exports = typeDefs

@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 const PostSchema = new mongoose.Schema({
   title: String,
   content: String,
-  username: String,
   createdAt: String,
   likes: [
     {
@@ -11,7 +10,7 @@ const PostSchema = new mongoose.Schema({
       createdAt: String
     }
   ],
-  user: {
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'users'
   }
