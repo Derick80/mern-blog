@@ -15,7 +15,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter your password'],
     minlength: 7,
-    maxlength: 42
+    maxlength: 256
+  },
+  token: {
+    type: String
   },
   role: {
     type: String

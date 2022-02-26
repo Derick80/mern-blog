@@ -1,12 +1,11 @@
 const { ApolloServer } = require('apollo-server-express')
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 import express from 'express'
-const typeDefs = require('../typedefs/users')
-const resolvers = require('../resolvers')
-import connectDb from '../config/db'
-
-import http from 'http'
 const dotenv = require('dotenv').config()
+const typeDefs = require('../typedefs')
+const resolvers = require('../resolvers')
+const connectDb = require('../config/db')
+import http from 'http'
 
 async function startServer(typeDefs: undefined, resolvers: undefined) {
   const port = process.env.PORT
