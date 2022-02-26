@@ -6,7 +6,7 @@ const PostSchema = new mongoose.Schema({
   createdAt: String,
   likes: [
     {
-      username: String,
+      likedBy: String,
       createdAt: String
     }
   ],

@@ -19,6 +19,13 @@ const typeDefs = gql`
     username: String!
     createdAt: String
     author: String!
+    likes: [Like]!
+    likeCount: Int!
+  }
+  type Like {
+    id: ID!
+    createdAt: String!
+    likedBy: String!
   }
   type Query {
     getPosts: [Post]
@@ -38,6 +45,7 @@ const typeDefs = gql`
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postCreateInput: PostCreateInput!): Post
+    likePost(postId: ID!): Post!
     # deletePost(postId: ID!): String!
   }
 `
