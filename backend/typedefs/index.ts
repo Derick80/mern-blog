@@ -1,6 +1,7 @@
 import { gql } from 'apollo-server-express'
-
 const typeDefs = gql`
+  scalar Upload
+
   type User {
     id: ID!
     username: String!
@@ -18,6 +19,7 @@ const typeDefs = gql`
     content: String!
     username: String!
     createdAt: String
+    postImageUrl: String
     author: String!
     likes: [Like]!
     likeCount: Int!
@@ -47,6 +49,13 @@ const typeDefs = gql`
     createPost(postCreateInput: PostCreateInput!): Post
     likePost(postId: ID!): Post!
     # deletePost(postId: ID!): String!
+    uploadFile(file: Upload!): File!
+  }
+  type File {
+    url: String!
+    filename: String!
+    mimetype: String!
+    encoding: String!
   }
 `
 module.exports = typeDefs

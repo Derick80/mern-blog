@@ -11,12 +11,12 @@ module.exports = (context: { req: { headers: { authorization: any } } }) => {
     if (token) {
       try {
         const user = jwt.verify(token, process.env.JWT_SECRET)
-        return user
+        return { user }
       } catch (error) {
         throw new AuthenticationError('invalid or expired token')
       }
     }
-    throw new Error('Auth toekn must be ....')
+    throw new Error('Auth token must be ....')
   }
   throw new Error('Authentication  header must be provided')
 }
