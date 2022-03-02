@@ -18,7 +18,18 @@ export const REGISTER_USER = gql`
       id
       email
       username
-      createdAt
+      role
+      token
+    }
+  }
+`
+
+export const LOGIN_USER = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      id
+      email
+      username
       token
     }
   }
@@ -30,17 +41,10 @@ export const FETCH_POSTS_QUERY = gql`
       title
       content
       createdAt
-      username
-      likeCount
+      author
       likes {
-        username
-      }
-      commentCount
-      comments {
-        id
-        username
+        likedBy
         createdAt
-        body
       }
     }
   }

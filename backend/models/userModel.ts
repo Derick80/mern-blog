@@ -17,12 +17,18 @@ const UserSchema = new mongoose.Schema({
     minlength: 7,
     maxlength: 256
   },
+  createdAt: {
+    type: String,
+    required: false
+  },
   token: {
     type: String
   },
   role: {
-    type: String
-  }
+    type: String,
+    default: 'user'
+  },
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'posts' }]
 })
 
 const User = mongoose.model('User', UserSchema)

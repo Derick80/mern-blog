@@ -11,25 +11,26 @@ import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { AuthProvider } from "./context/auth";
 
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Router>
         <div className="container">
           <Header />
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/" element={<Login />} />
-            <Route path="/" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
 
           </Routes>
         </div>
       </Router>
 
-    </>
+    </AuthProvider>
 
   );
 }

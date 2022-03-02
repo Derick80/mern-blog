@@ -6,7 +6,6 @@ const dotenv = require('dotenv').config()
 const typeDefs = require('../typedefs')
 const resolvers = require('../resolvers')
 const connectDb = require('../config/db')
-const context = require('../middleware/auth-middleware')
 
 import http from 'http'
 import { corsMiddleware } from '../middleware/corsMiddleware'

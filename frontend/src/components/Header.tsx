@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom"
 
 import Icon from '@mdi/react'
-import { mdiAccount, mdiLogin, mdiLogout, mdiPencilPlus, mdiPencilPlusOutline } from '@mdi/js'
+import { mdiAccount, mdiAccountPlusOutline, mdiLogin, mdiLogout, mdiPencilPlus, mdiPencilPlusOutline } from '@mdi/js'
+import { AuthContext } from "../context/auth"
+import { useContext } from "react"
 
-export default function Header() {
-    return (
+function Header() {
+    const { user, logout } = useContext(AuthContext)
+
+    const headerBar = user ? (
         <nav>
             <div className="logo">
                 <Link to="/">Posts Feed</Link>
@@ -12,7 +16,7 @@ export default function Header() {
             <ul className="nav-links" role="menu"
                 aria-labelledby="menubutton">
                 <li>
-                    <Link to="/Create">
+                    <Link to="/create">
 
                         <Icon className="svg-icon" path={mdiPencilPlusOutline} title="Create" />Create
 
@@ -24,14 +28,8 @@ export default function Header() {
 
                     </Link>
                 </li>
-                <li>
-                    <Link to="/login">
-                        <Icon className="svg-icon" path={mdiLogin} title="Login" />LOGIN
 
-                        {/* <span className="mdi mdi-login">LOGIN</span> */}
-                    </Link>
 
-                </li>
                 <li>
 
                     <Link to="/logout">                        <Icon className="svg-icon" path={mdiLogout} title="Logout" />LOGOUT
@@ -39,5 +37,37 @@ export default function Header() {
                 </li>
             </ul>
         </nav>
-    )
+    ) :
+        (
+            <nav>
+                <div className="logo">
+                    <Link to="/">Posts Feed</Link>
+                </div>
+                <ul className="nav-links" role="menu"
+                    aria-labelledby="menubutton">
+
+
+                    <li>
+                        <Link to="/register">
+                            <Icon className="svg-icon" path={mdiAccountPlusOutline} title="Register" />Register
+
+                            {/* <span className="mdi mdi-login">LOGIN</span> */}
+                        </Link>
+
+                    </li>
+                    <li>
+                        <Link to="/login">
+                            <Icon className="svg-icon" path={mdiLogin} title="Login" />LOGIN
+
+                        </Link>
+
+                    </li>
+
+                </ul>
+            </nav>
+        )
+        ;
+    return headerBar
+
 }
+export default Header
