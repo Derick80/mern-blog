@@ -39,13 +39,12 @@ module.exports = {
   },
   Mutation: {
     createPost: async (
-      _source: unknown,
+      _: any,
       { postInput: { title, content } }: any,
-      context: any,
-      _info: any
+      context: any
     ) => {
       const { user } = authMiddleware(context)
-
+      console.log(user)
       const newPost = new Post({
         title,
         content,

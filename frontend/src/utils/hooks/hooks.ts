@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+
 export type FormInputs = {
   username: string
   email: string
@@ -8,6 +8,7 @@ export type FormInputs = {
   title: string
   content: string
 }
+
 export const useForm = (
   callback: () => void,
   initialState: Partial<FormInputs>

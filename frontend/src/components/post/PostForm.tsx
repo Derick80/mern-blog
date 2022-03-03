@@ -7,6 +7,7 @@ import { useForm } from "../../utils/hooks/hooks"
 
 
 export default function PostForm() {
+    const context = useContext(AuthContext)
     let navigate = useNavigate()
     const { values, handleChange, handleSubmit } = useForm(createPostCallback, {
         title: '',
@@ -19,8 +20,8 @@ export default function PostForm() {
         createPost()
     }
 
-    const [createPost, { loading }] = useMutation(CREATE_POST_MUTATION, {
-        update(proxy: any, { data: { createPost: postInput } }) {
+    const [createPost,] = useMutation(CREATE_POST_MUTATION, {
+        update(proxy: any, { data: { createPost: postInput } }, context: any) {
             console.log(postInput)
             navigate('/drafts')
         },
