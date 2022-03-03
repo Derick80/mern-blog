@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-type FormInputs = {
+export type FormInputs = {
   username: string
   email: string
   password: string
   confirmPassword: string
+  title: string
+  content: string
 }
 export const useForm = (
   callback: () => void,

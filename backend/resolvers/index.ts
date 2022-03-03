@@ -4,7 +4,8 @@ const imagesResolver = require('./image')
 
 module.exports = {
   Post: {
-    likeCount: (parent) => parent.likes.length
+    likeCount: (parent) => parent.likes.length,
+    commentCount: (parent) => parent.comments.length
   },
   Query: {
     ...usersResolver.Query,

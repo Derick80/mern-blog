@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Icon from '@mdi/react'
 import { mdiAccount, mdiAccountPlusOutline, mdiLogin, mdiLogout, mdiPencilPlus, mdiPencilPlusOutline } from '@mdi/js'
@@ -6,6 +6,8 @@ import { AuthContext } from "../context/auth"
 import { useContext } from "react"
 
 function Header() {
+    let navigate = useNavigate()
+
     const { user, logout } = useContext(AuthContext)
 
     const headerBar = user ? (
@@ -32,8 +34,9 @@ function Header() {
 
                 <li>
 
-                    <Link to="/logout">                        <Icon className="svg-icon" path={mdiLogout} title="Logout" />LOGOUT
-                    </Link>
+                    <button onClick={logout}>
+                        logout
+                    </button>
                 </li>
             </ul>
         </nav>

@@ -18,6 +18,7 @@ export const REGISTER_USER = gql`
       id
       email
       username
+      createdAt
       role
       token
     }
@@ -30,6 +31,7 @@ export const LOGIN_USER = gql`
       id
       email
       username
+      createdAt
       token
     }
   }
@@ -42,7 +44,54 @@ export const FETCH_POSTS_QUERY = gql`
       content
       createdAt
       author
+      published
+      likeCount
       likes {
+        likedBy
+        createdAt
+      }
+      commentCount
+      comments {
+        content
+        username
+        createdAt
+      }
+    }
+  }
+`
+export const FETCH_DRAFTS_QUERY = gql`
+  {
+    getPosts {
+      id
+      title
+      content
+      createdAt
+      author
+      published
+      likeCount
+      likes {
+        likedBy
+        createdAt
+      }
+      commentCount
+      comments {
+        content
+        username
+        createdAt
+      }
+    }
+  }
+`
+export const CREATE_POST_MUTATION = gql`
+  mutation createPost($title: String!, $content: String!) {
+    createPost(postInput: { title: $title, content: $content }) {
+      id
+      title
+      author
+      username
+      createdAt
+      likes {
+        id
         likedBy
         createdAt
       }

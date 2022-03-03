@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthProvider } from "./context/auth";
+import Drafts from "./pages/Drafts";
+import Create from "./pages/Create";
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/drafts" element={<Drafts />} />
+            <Route path="/create" element={<Create />} />
 
 
           </Routes>

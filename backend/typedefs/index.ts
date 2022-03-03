@@ -7,6 +7,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
+    createdAt: String
     token: String!
     role: String!
   }
@@ -21,16 +22,26 @@ const typeDefs = gql`
     createdAt: String
     postImageUrl: String
     author: String!
+    published: Boolean
     likes: [Like]!
     likeCount: Int!
+    comments: [Comment]
+    commentCount: Int
   }
   type Like {
     id: ID!
     createdAt: String!
     likedBy: String!
   }
+  type Comment {
+    id: ID!
+    createdAt: String!
+    username: String!
+    content: String!
+  }
   type Query {
     getPosts: [Post]
+    getDraftPosts: [Post]
     getPostbyId(postId: ID!): Post
   }
   input RegisterInput {
@@ -39,16 +50,18 @@ const typeDefs = gql`
     confirmPassword: String!
     email: String!
   }
-  input PostCreateInput {
+  input PostInput {
     title: String!
     content: String!
   }
   type Mutation {
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
-    createPost(postCreateInput: PostCreateInput!): Post
+    createPost(postInput: PostInput!): Post!
+    deletePost(postId: ID!): String!
+    createComment(postId: String!, content: String!): Post!
+    deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
-    # deletePost(postId: ID!): String!
     uploadFile(file: Upload!): File!
   }
   type File {

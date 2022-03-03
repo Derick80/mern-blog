@@ -6,7 +6,7 @@ import { useForm } from "../utils/hooks/hooks";
 
 export default function Register() {
     let navigate = useNavigate()
-    const { handleChange, handleSubmit, values } = useForm(registerUser, {
+    const { handleChange, handleSubmit, values } = useForm(registerUserCallback, {
         username: '',
         email: '',
         password: '',
@@ -20,7 +20,7 @@ export default function Register() {
     //     confirmPassword: ''
     // }
 
-    function registerUser() {
+    function registerUserCallback() {
         register()
     }
 
