@@ -1,11 +1,10 @@
 const { ApolloServer } = require('apollo-server-express')
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 import express from 'express'
-const { graphqlUploadExpress } = require('graphql-upload')
 const dotenv = require('dotenv').config()
-const typeDefs = require('../typedefs')
-const resolvers = require('../resolvers')
-const connectDb = require('../config/db')
+const typeDefs = require('../schema/typedefs')
+const resolvers = require('../schema/resolvers')
+const connectDb = require('../config/utils/db')
 
 import http from 'http'
 import { corsMiddleware } from '../middleware/corsMiddleware'

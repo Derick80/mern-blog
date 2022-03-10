@@ -17,13 +17,6 @@ const authLink = new ApolloLink((operation, forward) => {
     }
   }))
   return forward(operation)
-  // const token = localStorage.getItem('jwtToken')
-  // return {
-  //   headers: {
-  //     ...headers,
-  //     Authorization: token ? `Bearer ${token}` : ''
-  //   }
-  // }
 })
 
 export const client = new ApolloClient({

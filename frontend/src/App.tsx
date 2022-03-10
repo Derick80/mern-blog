@@ -1,4 +1,3 @@
-import { render } from "react-dom";
 import {
   BrowserRouter as
     Router,

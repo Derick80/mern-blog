@@ -1,5 +1,5 @@
-const Post = require('../models/postModel')
-const authMiddleware = require('../middleware/auth-middleware')
+const Post = require('../../models/postModel')
+const checkAuth = require('../../middleware/check-auth')
 
 module.exports = {
   Query: {
@@ -12,7 +12,7 @@ module.exports = {
       }
     },
     getDraftPosts: async (_: any, _args: any, context: any) => {
-      const { user } = authMiddleware(context)
+      const { user } = checkAuth(context)
 
       try {
         const posts = await Post.find({
@@ -43,7 +43,7 @@ module.exports = {
       { postInput: { title, content } }: any,
       context: any
     ) => {
-      const { user } = authMiddleware(context)
+      const { user } = checkAuth(context)
       console.log(user)
       const newPost = new Post({
         title,
@@ -58,7 +58,7 @@ module.exports = {
       return post
     },
     likePost: async (_: any, { postId }: any, context: any) => {
-      const { user } = authMiddleware(context)
+      const { user } = checkAuth(context)
       console.log(user.username)
       const post = await Post.findById(postId)
       if (post) {

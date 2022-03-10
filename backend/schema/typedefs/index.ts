@@ -1,7 +1,5 @@
 import { gql } from 'apollo-server-express'
 const typeDefs = gql`
-  scalar Upload
-
   type User {
     id: ID!
     username: String!
@@ -54,6 +52,7 @@ const typeDefs = gql`
     title: String!
     content: String!
   }
+
   type Mutation {
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
@@ -62,13 +61,6 @@ const typeDefs = gql`
     createComment(postId: String!, content: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
-    uploadFile(file: Upload!): File!
-  }
-  type File {
-    url: String!
-    filename: String!
-    mimetype: String!
-    encoding: String!
   }
 `
 module.exports = typeDefs

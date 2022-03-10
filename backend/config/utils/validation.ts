@@ -1,10 +1,17 @@
+type ErrorTypes = {
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+}
+
 module.exports.validateRegisterInput = (
   username: string,
   email: string,
   password: string,
   confirmPassword: string
 ) => {
-  const errors = {}
+  const errors = {} as ErrorTypes
   if (username.trim() === '') {
     errors.username = 'username must not be empty'
   }
