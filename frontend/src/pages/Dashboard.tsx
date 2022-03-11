@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
+import { Upload } from "../components/Upload";
 import { AuthContext } from "../context/auth";
+import { Files } from "../utils/Files";
 import { FETCH_POSTS_QUERY } from "../utils/graphql/graphql";
 
 
@@ -14,7 +16,8 @@ export default function Dashboard() {
     return (
 
         <>
-            DASHBOARD        </>
+            <Upload />
+            <Files />       </>
     )
 }
 

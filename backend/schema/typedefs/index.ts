@@ -1,5 +1,15 @@
 import { gql } from 'apollo-server-express'
+
 const typeDefs = gql`
+  scalar Upload
+
+  type File {
+    uri: String
+    filename: String
+    mimetype: String
+    encoding: String
+  }
+
   type User {
     id: ID!
     username: String!
@@ -41,6 +51,8 @@ const typeDefs = gql`
     getPosts: [Post]
     getDraftPosts: [Post]
     getPostbyId(postId: ID!): Post
+    files: [String]
+    uploads: [File]
   }
   input RegisterInput {
     username: String!
@@ -52,8 +64,8 @@ const typeDefs = gql`
     title: String!
     content: String!
   }
-
   type Mutation {
+    uploadFile(file: Upload!): Boolean
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!

@@ -2,6 +2,10 @@ const { ApolloServer } = require('apollo-server-express')
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 import express from 'express'
 const dotenv = require('dotenv').config()
+const {
+  GraphQLUpload,
+  graphqlUploadExpress // A Koa implementation is also exported.
+} = require('graphql-upload')
 const typeDefs = require('../schema/typedefs')
 const resolvers = require('../schema/resolvers')
 const connectDb = require('../config/utils/db')
@@ -17,6 +21,7 @@ async function startServer(typeDefs: undefined, resolvers: undefined) {
 
   const httpServer = http.createServer(app)
   app.use(corsMiddleware)
+  app.use(graphqlUploadExpress())
   connectDb()
 
   const apolloServer = new ApolloServer({

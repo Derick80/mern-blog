@@ -3,9 +3,15 @@ import {
   InMemoryCache,
   createHttpLink,
   ApolloLink,
-  concat
+  concat,
+  from
 } from '@apollo/client'
 
+import { createUploadLink } from 'apollo-upload-client'
+
+// const photoLink = createUploadLink({
+//   uri: 'http://localhost:5045/graphql'
+// })
 const httpLink = createHttpLink({
   uri: 'http://localhost:5045/graphql'
 })
