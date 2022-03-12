@@ -7,6 +7,9 @@ module.exports = {
     likeCount: (parent: any) => parent.likes.length,
     commentCount: (parent: any) => parent.comments.length
   },
+  Upload: {
+    ...imagesResolver.Upload
+  },
   Query: {
     ...usersResolver.Query,
     ...postsResolver.Query,

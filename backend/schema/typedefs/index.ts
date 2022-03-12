@@ -65,7 +65,7 @@ const typeDefs = gql`
     content: String!
   }
   type Mutation {
-    uploadFile(file: Upload!): Boolean
+    uploadFile(file: Upload!): String!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!
