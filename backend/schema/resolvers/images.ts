@@ -21,7 +21,7 @@ module.exports = {
 
   Mutation: {
     uploadFile: async (parent: any, args: FileArgs) => {
-      const { filename, mimetype, createReadStream } = await args.file
+      const { filename, mimetype, createReadStream, url } = await args.file
       // first check file size before proceeding
       try {
         const oneGb: number = 1000000000
@@ -35,11 +35,13 @@ module.exports = {
       const uniqueFilename = generateUniqueFilename(filename)
       // upload to Google Cloud Storage
       try {
-        await uploadToGoogleCloud(createReadStream, uniqueFilename)
+        const url = await uploadToGoogleCloud(createReadStream, uniqueFilename)
+        return {
+          url: `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`
+        }
       } catch (err) {
         throw new UserInputError('Error with uploading to Google Cloud')
       }
-      return `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`
     }
   }
 }
