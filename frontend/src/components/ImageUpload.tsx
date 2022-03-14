@@ -1,39 +1,23 @@
-import { useQuery } from '@apollo/client'
-import { useMutation } from '@apollo/client'
-import { useCallback, useState } from 'react'
-import UploadButton from './UploadButton'
-import { gql } from '@apollo/client'
-
-const uploadFileMutation = gql`
-  mutation UploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      uploadFile
-    }
-  }
-`
+import { useMutation } from "@apollo/client";
+import { UPLOAD_FILE_MUTATION } from "../utils/hooks/hooks";
 
 const ImageUpload = () => {
-  // const { data, loading } = useQuery(filesQuery)
-  const [uploading, setUploading] = useState<boolean>(false)
-  const [url, setUrl] = useState('')
-  const [uploadFile, { data, loading, error }] = useMutation(
-    uploadFileMutation,
-    {
-      variables: {
-        file: null
-      }
+  const [mutate, { loading, error }] = useMutation(UPLOAD_FILE_MUTATION);
+  const onChange = ({
+    target: {
+      validity,
+      files: [file]
     }
-  )
+  }: any) => validity.valid && mutate({ variables: { file } });
 
-  function handleUpload() {
-    uploadFile()
-    setUploading(loading)
-    setUrl(data)
-  }
-  return <UploadButton onUpload={handleUpload} loading={uploading} />
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{JSON.stringify(error, null, 2)}</div>;
 
-}
+  return (
+    <>
+      <input type="file" required onChange={onChange} />
+    </>
+  );
+};
+
 export default ImageUpload
-// , {
-//     refetchQueries: [{query: filesQuery}]
-//     }

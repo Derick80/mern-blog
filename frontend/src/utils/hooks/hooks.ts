@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client'
 import React, { useState } from 'react'
 
 export type FormInputs = {
@@ -7,6 +8,7 @@ export type FormInputs = {
   confirmPassword: string
   title: string
   content: string
+  file: string
 }
 
 export const useForm = (
@@ -28,3 +30,14 @@ export const useForm = (
     values
   }
 }
+
+export const UPLOAD_FILE_MUTATION = gql`
+  mutation ($file: Upload!) {
+    uploadFile(file: $file) {
+      filename
+      mimetype
+      encoding
+      url
+    }
+  }
+`

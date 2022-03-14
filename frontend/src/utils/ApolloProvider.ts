@@ -9,12 +9,9 @@ import {
 
 import { createUploadLink } from 'apollo-upload-client'
 
-// const photoLink = createUploadLink({
+// const httpLink = createHttpLink({
 //   uri: 'http://localhost:5045/graphql'
 // })
-const httpLink = createHttpLink({
-  uri: 'http://localhost:5045/graphql'
-})
 const authLink = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
@@ -24,8 +21,10 @@ const authLink = new ApolloLink((operation, forward) => {
   }))
   return forward(operation)
 })
-
+const httpLink = createUploadLink({
+  uri: 'http://localhost:5045/graphql'
+})
 export const client = new ApolloClient({
-  link: concat(authLink, httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  link: from([authLink, httpLink])
 })
