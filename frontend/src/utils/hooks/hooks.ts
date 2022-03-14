@@ -8,7 +8,7 @@ export type FormInputs = {
   confirmPassword: string
   title: string
   content: string
-  imageUrl: string
+  imageUrl?: string
   file: string
 }
 
