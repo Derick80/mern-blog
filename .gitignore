@@ -25,3 +25,6 @@ yarn-error.log*
 /.vscode/
 
 homeprojects-343720-4702ce20bfb6.json
+
+yarn.lock
+backend/yarn.lock
