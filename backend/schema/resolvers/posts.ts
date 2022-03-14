@@ -40,7 +40,7 @@ module.exports = {
   Mutation: {
     createPost: async (
       _: any,
-      { postInput: { title, content } }: any,
+      { postInput: { title, content, imageUrl } }: any,
       context: any
     ) => {
       const { user } = checkAuth(context)
@@ -48,6 +48,7 @@ module.exports = {
       const newPost = new Post({
         title,
         content,
+        imageUrl,
         username: user.username,
         author: user.id,
         createdAt: new Date().toISOString()

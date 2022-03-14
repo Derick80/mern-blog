@@ -15,9 +15,8 @@ const PostSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  postImageUrl: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'image'
+  imageUrl: {
+    type: String
   },
   comments: [
     {

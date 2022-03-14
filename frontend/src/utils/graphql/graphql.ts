@@ -83,11 +83,15 @@ export const FETCH_DRAFTS_QUERY = gql`
   }
 `
 export const CREATE_POST_MUTATION = gql`
-  mutation createPost($title: String!, $content: String!) {
-    createPost(postInput: { title: $title, content: $content }) {
+  mutation createPost($title: String!, $content: String!, $imageUrl: String!) {
+    createPost(
+      postInput: { title: $title, content: $content, imageUrl: $imageUrl }
+    ) {
       id
       title
       author
+      imageUrl
+      content
       username
       createdAt
       likes {

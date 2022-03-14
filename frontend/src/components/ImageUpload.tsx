@@ -1,23 +1,42 @@
 import { useMutation } from "@apollo/client";
+import { useEffect, useState } from "react";
 import { UPLOAD_FILE_MUTATION } from "../utils/hooks/hooks";
+import { useUpload } from "../utils/hooks/imageHooks";
+import PostForm from "./post/PostForm";
 
-const ImageUpload = () => {
-  const [mutate, { loading, error }] = useMutation(UPLOAD_FILE_MUTATION);
+
+export type imageUploadFormProps = {
+
+  useUpload: Function
+}
+const ImageUploadButton = () => {
+  const [imageUrl, setImageUrl] = useState('')
+
+
+  const [mutate, { data, loading, error }] = useMutation(UPLOAD_FILE_MUTATION)
+
   const onChange = ({
     target: {
       validity,
       files: [file]
     }
-  }: any) => validity.valid && mutate({ variables: { file } });
+  }: any) => validity.valid && mutate({ variables: { file } })
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{JSON.stringify(error, null, 2)}</div>;
+
+  useEffect(() => {
+    if (data) {
+      setImageUrl(data.uploadFile.imageUrl)
+    }
+  }, [data])
+  // console.log(data.uploadFile.imageUrl);
+
 
   return (
     <>
       <input type="file" required onChange={onChange} />
-    </>
-  );
+
+    </>)
+    ;
 };
 
-export default ImageUpload
+export default ImageUploadButton

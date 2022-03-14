@@ -4,7 +4,7 @@ const typeDefs = gql`
   scalar Upload
 
   type File {
-    url: String
+    imageUrl: String
     filename: String
     mimetype: String
     encoding: String
@@ -28,7 +28,7 @@ const typeDefs = gql`
     content: String!
     username: String!
     createdAt: String
-    postImageUrl: String
+    imageUrl: String
     author: String!
     published: Boolean
     likes: [Like]!
@@ -51,7 +51,7 @@ const typeDefs = gql`
     getPosts: [Post]
     getDraftPosts: [Post]
     getPostbyId(postId: ID!): Post
-    files: [String]
+    imageUrl: String
     uploads: [File]
   }
   input RegisterInput {
@@ -63,6 +63,7 @@ const typeDefs = gql`
   input PostInput {
     title: String!
     content: String!
+    imageUrl: String
   }
   type Mutation {
     uploadFile(file: Upload!): File!

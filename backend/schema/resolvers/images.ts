@@ -11,17 +11,16 @@ import {
   uploadToGoogleCloud
 } from '../../config/utils/fileOperations'
 import { FileArgs } from '../../config/utils/types'
-
-const files: any[] = []
+const imageUrl = ''
 module.exports = {
   Query: {
-    files: () => files
+    imageUrl: () => imageUrl
   },
   Upload: GraphQLUpload,
 
   Mutation: {
     uploadFile: async (parent: any, args: FileArgs) => {
-      const { filename, mimetype, createReadStream, url } = await args.file
+      const { filename, mimetype, createReadStream } = await args.file
       // first check file size before proceeding
       try {
         const oneGb: number = 1000000000
@@ -36,8 +35,10 @@ module.exports = {
       // upload to Google Cloud Storage
       try {
         const url = await uploadToGoogleCloud(createReadStream, uniqueFilename)
+        const imageUrl = `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`
+
         return {
-          url: `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`
+          imageUrl
         }
       } catch (err) {
         throw new UserInputError('Error with uploading to Google Cloud')

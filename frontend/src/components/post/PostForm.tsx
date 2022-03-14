@@ -4,14 +4,21 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/auth"
 import { CREATE_POST_MUTATION, REGISTER_USER } from "../../utils/graphql/graphql"
 import { useForm } from "../../utils/hooks/hooks"
+import ImageUploadButton from "../ImageUpload"
 
-
-export default function PostForm() {
+export type PostFormProps = {
+    mutate?: {
+        imageUrl?: string
+    }
+}
+export default function PostForm(props: PostFormProps) {
+    const { mutate } = props
     const context = useContext(AuthContext)
     let navigate = useNavigate()
     const { values, handleChange, handleSubmit } = useForm(createPostCallback, {
         title: '',
         content: '',
+
 
     })
 
@@ -52,6 +59,8 @@ export default function PostForm() {
                 value={values.content}
                 onChange={handleChange}
             ></input>
+
+
             <button type='submit' >
                 Create Draft
             </button>
