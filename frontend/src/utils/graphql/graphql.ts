@@ -44,8 +44,10 @@ export const FETCH_POSTS_QUERY = gql`
       content
       createdAt
       author
+      username
       published
       likeCount
+      imageUrl
       likes {
         likedBy
         createdAt
@@ -67,7 +69,9 @@ export const FETCH_DRAFTS_QUERY = gql`
       content
       createdAt
       author
+      username
       published
+      imageUrl
       likeCount
       likes {
         likedBy

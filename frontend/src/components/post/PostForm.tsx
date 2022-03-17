@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/auth"
 import { CREATE_POST_MUTATION, REGISTER_USER } from "../../utils/graphql/graphql"
 import { useForm } from "../../utils/hooks/hooks"
-import ImageUploadButton from "../ImageUpload"
+import ImageUploadButton from "../CreatePostForm"
 
 export type PostFormProps = {
     mutate?: {

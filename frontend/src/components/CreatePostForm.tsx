@@ -11,7 +11,7 @@ export type imageUploadFormProps = {
 
   useUpload: Function
 }
-const ImageUploadButton = () => {
+const CreatePostForm = () => {
   const [imageUrl, setImageUrl] = useState('')
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
@@ -101,4 +101,4 @@ const ImageUploadButton = () => {
     ;
 };
 
-export default ImageUploadButton
+export default CreatePostForm
