@@ -65,11 +65,24 @@ const typeDefs = gql`
     content: String!
     imageUrl: String
   }
+  input PostUpdateInput {
+    postId: ID!
+    title: String!
+    content: String!
+    imageUrl: String
+  }
   type Mutation {
     uploadFile(file: Upload!): File!
+    editPost(id: ID!): Post!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!
+    publishPost(
+      postId: String!
+      content: String!
+      title: String!
+      imageUrl: String
+    ): Post!
     deletePost(postId: ID!): String!
     createComment(postId: String!, content: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!

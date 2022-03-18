@@ -63,7 +63,7 @@ export const FETCH_POSTS_QUERY = gql`
 `
 export const FETCH_DRAFTS_QUERY = gql`
   {
-    getPosts {
+    getDraftPosts {
       id
       title
       content
@@ -86,7 +86,57 @@ export const FETCH_DRAFTS_QUERY = gql`
     }
   }
 `
-export const CREATE_POST_MUTATION = gql`
+// export const CREATE_POST_MUTATION = gql`
+//   mutation createPost($title: String!, $content: String!, $imageUrl: String!) {
+//     createPost(
+//       postInput: { title: $title, content: $content, imageUrl: $imageUrl }
+//     ) {
+//       id
+//       title
+//       author
+//       imageUrl
+//       content
+//       username
+//       createdAt
+//       likes {
+//         id
+//         likedBy
+//         createdAt
+//       }
+//     }
+//   }
+// `
+
+export const PUBLISH_POST = gql`
+  mutation publishPost(
+    $title: String!
+    $content: String!
+    $imageUrl: String!
+    $postId: String!
+  ) {
+    publishPost(
+      title: $title
+      content: $content
+      imageUrl: $imageUrl
+      postId: $postId
+    ) {
+      id
+      title
+      author
+      imageUrl
+      content
+      username
+      createdAt
+      likes {
+        id
+        likedBy
+        createdAt
+      }
+    }
+  }
+`
+
+export const ADD_POST_MUTATION = gql`
   mutation createPost($title: String!, $content: String!, $imageUrl: String!) {
     createPost(
       postInput: { title: $title, content: $content, imageUrl: $imageUrl }
@@ -103,6 +153,37 @@ export const CREATE_POST_MUTATION = gql`
         likedBy
         createdAt
       }
+    }
+  }
+`
+export const EDIT_POST_MUTATION = gql`
+  mutation editPost($id: Int, $post: PostInput) {
+    editPost(id: $id, post: $post) {
+      id
+      title
+      content
+      imageUrl
+    }
+  }
+`
+export const GET_DRAFTS = gql`
+  {
+    drafts {
+      id
+      title
+      content
+      imageUrl
+      published
+    }
+  }
+`
+const DELETE_DRAFT = gql`
+  mutation deleteDraft($id: Int) {
+    deleteDraft(id: $id) {
+      id
+      title
+      content
+      imageUrl
     }
   }
 `

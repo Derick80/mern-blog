@@ -25,6 +25,12 @@ function Header() {
                     </Link>
                 </li>
                 <li>
+                    <Link to="/drafts">
+
+                        drafts
+                    </Link>
+                </li>
+                <li>
                     <Link to="/profile">
                         <Icon className="svg-icon" path={mdiAccount} title="Acount" />Acount
 

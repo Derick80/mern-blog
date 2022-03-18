@@ -46,15 +46,55 @@ module.exports = {
       const { user } = checkAuth(context)
       console.log(user)
       const newPost = new Post({
-        title,
-        content,
-        imageUrl,
+        title: title,
+        content: content,
+        imageUrl: imageUrl,
         username: user.username,
         author: user.id,
         createdAt: new Date().toISOString()
       })
 
       const post = await newPost.save()
+
+      return post
+    },
+    editPost: async (
+      _: any,
+      { postInput: { title, content, imageUrl, id } }: any,
+      context: any
+    ) => {
+      const updatePost = await Post.findById(id)
+      if (updatePost) {
+        Post({
+          title,
+          content,
+          imageUrl,
+          published: true
+        })
+      }
+      const updatedPost = await updatePost.save(id)
+      return updatedPost
+    },
+    publishPost: async (
+      _: any,
+      { args: { title, content, imageUrl, id } }: any,
+
+      context: any
+    ) => {
+      const { user } = checkAuth(context)
+      console.log(user)
+      const updatePost = await Post.findById(id)
+      if (updatePost) {
+        Post({
+          title,
+          content,
+          imageUrl,
+          published: true,
+
+          createdAt: new Date().toISOString()
+        })
+      }
+      const post = await updatePost.save(id)
 
       return post
     },

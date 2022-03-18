@@ -1,24 +1,48 @@
-import { ChangeEventHandler } from 'react'
+import { useMutation } from '@apollo/client'
+import { ChangeEventHandler, useEffect, useState } from 'react'
+import { UPLOAD_FILE_MUTATION } from '../utils/hooks/hooks'
+import CreatePostFormTwo from './post/CreatePostFormTwo'
 
 export type UploadButtonProps = {
-    onUpload: ChangeEventHandler<HTMLInputElement>
+    onChange: ChangeEventHandler<HTMLInputElement>
 
 }
 
-export default function UploadButton(props: UploadButtonProps) {
+export default function UploadButton() {
+    const [imageUrl, setImageUrl] = useState('')
+
+    const [mutate, { data, loading, error }] = useMutation(UPLOAD_FILE_MUTATION)
+
+    const onChange = ({
+        target: {
+            validity,
+            files: [file]
+        }
+    }: any) => validity.valid && mutate({ variables: { file } })
+
+
+    useEffect(() => {
+        if (data) {
+            return setImageUrl(data.uploadFile.imageUrl.toString())
+        }
+    }, [data])
     return (
-        <div className="upload_button">
-            <label htmlFor='contained-button-file'>
+        <>
+            <div className="upload_button">
+                <label htmlFor='contained-button-file'>
 
-            </label>
-            <input
+                </label>
+                <input
 
-                type='file'
-                id='single'
-                accept='image/*'
-                onChange={props.onUpload}
+                    type='file'
 
-            />
-        </div>
+                    accept='image/*'
+                    onChange={onChange}
+
+                />
+            </div>
+            <CreatePostFormTwo initialImageUrl={imageUrl} />
+        </>
+
     )
 }
