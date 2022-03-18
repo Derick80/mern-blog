@@ -181,7 +181,7 @@ export const EDIT_POST_MUTATION = gql`
 `
 export const GET_DRAFTS = gql`
   {
-    drafts {
+    getDraftPosts {
       id
       title
       content

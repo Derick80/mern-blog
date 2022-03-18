@@ -1,9 +1,6 @@
 import { useMutation } from '@apollo/client'
-import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ADD_POST_MUTATION, FETCH_DRAFTS_QUERY, GET_DRAFTS } from '../../utils/graphql/graphql'
-import { UPLOAD_FILE_MUTATION } from '../../utils/hooks/hooks'
-import UploadButton from '../UploadButton'
+import { ADD_POST_MUTATION } from '../../utils/graphql/graphql'
 import PostDraftForm from './PostDraftForm'
 
 export type CreatePostFormProps = {

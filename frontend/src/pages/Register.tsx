@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { REGISTER_USER } from "../utils/graphql/graphql";
 import { useForm } from "../utils/hooks/hooks";
@@ -13,18 +13,12 @@ export default function Register() {
         confirmPassword: ''
     })
 
-    // const initialState = {
-    //     username: '',
-    //     email: '',
-    //     password: '',
-    //     confirmPassword: ''
-    // }
 
     function registerUserCallback() {
         register()
     }
 
-    const [register, { loading }] = useMutation(REGISTER_USER, {
+    const [register] = useMutation(REGISTER_USER, {
         update(_: any, data) {
             console.log(data)
             navigate('/')

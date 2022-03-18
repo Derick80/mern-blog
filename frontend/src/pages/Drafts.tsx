@@ -1,12 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
-import { title } from "process";
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DraftsDisplay from "../components/post/Drafts";
 import PostDraftForm from "../components/post/PostDraftForm";
-import { AuthContext } from "../context/auth";
-import { EDIT_POST_MUTATION, FETCH_DRAFTS_QUERY, PUBLISH_POST } from "../utils/graphql/graphql";
-import { UPLOAD_FILE_MUTATION, useForm } from "../utils/hooks/hooks";
+import { EDIT_POST_MUTATION, FETCH_DRAFTS_QUERY } from "../utils/graphql/graphql";
 
 export default function Drafts(): any {
     let navigate = useNavigate()

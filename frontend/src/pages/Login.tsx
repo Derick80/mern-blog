@@ -1,5 +1,5 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { useContext, useState } from "react"
+import { useMutation } from "@apollo/client";
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { LOGIN_USER } from "../utils/graphql/graphql";
@@ -18,7 +18,7 @@ export default function Login() {
         loginUser()
     }
 
-    const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+    const [loginUser] = useMutation(LOGIN_USER, {
         update(proxy, { data: { login: userData } }) {
             console.log(userData);
             context.login(userData)

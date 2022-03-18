@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import Icon from '@mdi/react'
 import { mdiAccount, mdiAccountPlusOutline, mdiLogin, mdiPencilPlusOutline } from '@mdi/js'
@@ -6,7 +6,6 @@ import { AuthContext } from "../context/auth"
 import { useContext } from "react"
 
 function Header() {
-    let navigate = useNavigate()
 
     const { user, logout } = useContext(AuthContext)
 

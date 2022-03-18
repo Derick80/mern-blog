@@ -11,7 +11,7 @@ export type UploadButtonProps = {
 export default function UploadButton() {
     const [imageUrl, setImageUrl] = useState('')
 
-    const [mutate, { data, loading, error }] = useMutation(UPLOAD_FILE_MUTATION)
+    const [mutate, { data }] = useMutation(UPLOAD_FILE_MUTATION)
 
     const onChange = ({
         target: {
