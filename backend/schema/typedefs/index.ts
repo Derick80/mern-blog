@@ -73,7 +73,7 @@ const typeDefs = gql`
   }
   type Mutation {
     uploadFile(file: Upload!): File!
-    editPost(id: ID!): Post!
+    editPost(postUpdateInput: PostUpdateInput): Post!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!

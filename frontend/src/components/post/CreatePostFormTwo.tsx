@@ -10,6 +10,7 @@ export type CreatePostFormProps = {
     initialImageUrl: string
 }
 export default function CreatePostFormTwo({ initialImageUrl }: CreatePostFormProps) {
+    let navigate = useNavigate()
 
 
 
@@ -26,9 +27,11 @@ export default function CreatePostFormTwo({ initialImageUrl }: CreatePostFormPro
                         variables: {
                             ...postInput
                         },
-
                     });
+                    navigate('/drafts')
+
                 }}
+
             />
         </>
 

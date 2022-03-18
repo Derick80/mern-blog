@@ -60,30 +60,27 @@ module.exports = {
     },
     editPost: async (
       _: any,
-      { postInput: { title, content, imageUrl, id } }: any,
+      { postUpdateInput: { title, content, imageUrl, postId } }: any,
       context: any
     ) => {
-      const updatePost = await Post.findById(id)
-      if (updatePost) {
-        Post({
-          title,
-          content,
-          imageUrl,
-          published: true
-        })
-      }
-      const updatedPost = await updatePost.save(id)
-      return updatedPost
+      const updatePost = await Post.findByIdAndUpdate(postId, {
+        title,
+        content,
+        imageUrl,
+        published: true
+      })
+
+      return updatePost
     },
     publishPost: async (
       _: any,
-      { args: { title, content, imageUrl, id } }: any,
+      { args: { title, content, imageUrl, postId } }: any,
 
       context: any
     ) => {
       const { user } = checkAuth(context)
       console.log(user)
-      const updatePost = await Post.findById(id)
+      const updatePost = await Post.findById(postId)
       if (updatePost) {
         Post({
           title,
@@ -94,7 +91,7 @@ module.exports = {
           createdAt: new Date().toISOString()
         })
       }
-      const post = await updatePost.save(id)
+      const post = await updatePost.save(postId)
 
       return post
     },
