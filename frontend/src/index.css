@@ -1,0 +1,50 @@
+
+
+/* Color Theme Swatches in RGBA */
+.Greem-Space-1-rgba {
+    color: rgba(3, 65, 89, 1);
+}
+
+.Greem-Space-2-rgba {
+    color: rgba(2, 89, 81, 1);
+}
+
+.Greem-Space-3-rgba {
+    color: rgba(2, 115, 94, 1);
+}
+
+.Greem-Space-4-rgba {
+    color: rgba(3, 140, 62, 1);
+}
+
+.Greem-Space-5-rgba {
+    color: rgba(12, 242, 93, 1);
+}
+
+
+:root {
+    --ff-body: 'Poppins', sans-serif;
+    --fs-H1: 4.5rem;
+    --fs-H2: 2.75rem;
+    --fs-H3: 2rem;
+    --fs-H4: 2.125rem;
+    --fs-H5: 1.5rem;
+    --fs-H6: 1.25rem;
+    --fs-body-1: 1rem;
+    --fs-body-2: 0.875rem;
+    --fs-caption: 0.75rem;
+      --fclr-primary: rgb(255, 255, 255);
+
+/* use for background */
+--clr-primary: rgba(2, 115, 94, 1);
+/* use for nav */
+--clr-secondary:rgba(2, 89, 81, 1);
+/* maybe for menu buttons */
+--clr-outline:rgba(3, 65, 89, 1);
+/* for important icons */
+--clr-important:rgba(12, 242, 93, 1);
+/* subtext? */
+--clr_subtext:rgba(3, 140, 62, 1);
+
+
+}

@@ -24,7 +24,7 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
                         disabled={disabled}
                         type="text"
                         value={initialPostId}
-                        onChange={e => setTitle(e.target.value)}
+                        onChange={e => setPostId(e.target.value)}
                     />
                 </div>
                 <div >

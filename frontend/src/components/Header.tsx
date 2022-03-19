@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 import Icon from '@mdi/react'
 import { mdiAccount, mdiAccountPlusOutline, mdiLogin, mdiPencilPlusOutline } from '@mdi/js'
@@ -11,33 +11,36 @@ function Header() {
 
     const headerBar = user ? (
         <nav>
-            <div className="logo">
-                <Link to="/">Posts Feed</Link>
-            </div>
-            <ul className="nav-links" role="menu"
+
+            <ul className="left-nav-ul" role="menu"
                 aria-labelledby="menubutton">
                 <li>
-                    <Link to="/create">
+                    <NavLink to="/">Posts Feed</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/create">
 
                         <Icon className="svg-icon" path={mdiPencilPlusOutline} title="Create" />Create
 
-                    </Link>
+                    </NavLink>
                 </li>
                 <li>
-                    <Link to="/drafts">
+                    <NavLink to="/drafts">
 
                         drafts
-                    </Link>
+                    </NavLink>
                 </li>
-                <li>
-                    <Link to="/profile">
+            </ul>
+            <ul className="right-nav-ul">
+                <li className="right-li">
+                    <NavLink to="/profile">
                         <Icon className="svg-icon" path={mdiAccount} title="Acount" />Acount
 
-                    </Link>
+                    </NavLink>
                 </li>
 
 
-                <li>
+                <li className="right-li">
 
                     <button onClick={logout}>
                         logout
@@ -48,26 +51,26 @@ function Header() {
     ) :
         (
             <nav>
-                <div className="logo">
-                    <Link to="/">Posts Feed</Link>
-                </div>
-                <ul className="nav-links" role="menu"
-                    aria-labelledby="menubutton">
 
+                <ul role="menu"
+                    aria-labelledby="menubutton">
+                    <li>
+                        <NavLink to="/">Posts Feed</NavLink>
+                    </li>
 
                     <li>
-                        <Link to="/register">
+                        <NavLink to="/register">
                             <Icon className="svg-icon" path={mdiAccountPlusOutline} title="Register" />Register
 
                             {/* <span className="mdi mdi-login">LOGIN</span> */}
-                        </Link>
+                        </NavLink>
 
                     </li>
                     <li>
-                        <Link to="/login">
+                        <NavLink to="/login">
                             <Icon className="svg-icon" path={mdiLogin} title="Login" />LOGIN
 
-                        </Link>
+                        </NavLink>
 
                     </li>
 

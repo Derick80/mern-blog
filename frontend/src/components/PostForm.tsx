@@ -5,12 +5,11 @@ import CreatePostFormTwo from './post/CreatePostFormTwo'
 
 export type UploadButtonProps = {
     onChange: ChangeEventHandler<HTMLInputElement>
-
+    ImageUpload: Function
 }
 
-export default function UploadButton() {
+function WritePost() {
     const [imageUrl, setImageUrl] = useState('')
-
     const [mutate, { data }] = useMutation(UPLOAD_FILE_MUTATION)
 
     const onChange = ({
@@ -26,23 +25,40 @@ export default function UploadButton() {
             return setImageUrl(data.uploadFile.imageUrl.toString())
         }
     }, [data])
+
     return (
         <>
-            <div className="upload_button">
-                <label htmlFor='contained-button-file'>
 
-                </label>
-                <input
-
-                    type='file'
-
-                    accept='image/*'
-                    onChange={onChange}
-
-                />
-            </div>
             <CreatePostFormTwo initialImageUrl={imageUrl} />
         </>
 
     )
 }
+
+export type ImageUploadButtonProps = {
+    onChange?: React.FormEventHandler<HTMLInputElement>;
+}
+
+function ImageUploadButton(onChange: ImageUploadButtonProps) {
+    <>
+        <div className="upload_button">
+            <label htmlFor='contained-button-file'>
+            </label>
+            <input
+                type='file'
+                accept='image/*'
+                onChange={() => onChange}
+
+            />
+        </div>
+
+    </>
+}
+function PostForm() {
+
+    return (<>
+        <WritePost />
+    </>)
+}
+
+export default PostForm
