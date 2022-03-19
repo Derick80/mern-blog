@@ -28,7 +28,7 @@ function WritePost() {
 
     return (
         <>
-
+            <ImageUploadButton onChange={onChange} />
             <CreatePostFormTwo initialImageUrl={imageUrl} />
         </>
 
@@ -40,25 +40,26 @@ export type ImageUploadButtonProps = {
 }
 
 function ImageUploadButton(onChange: ImageUploadButtonProps) {
-    <>
-        <div className="upload_button">
-            <label htmlFor='contained-button-file'>
-            </label>
-            <input
-                type='file'
-                accept='image/*'
-                onChange={() => onChange}
+    return (
+        <>
+            <div className="upload_button">
+                <label htmlFor='contained-button-file'>
+                </label>
+                <input
+                    type='file'
+                    accept='image/*'
+                    onChange={() => onChange}
 
-            />
-        </div>
+                />
+            </div>
 
-    </>
+        </>)
 }
 function PostForm() {
 
-    return (<>
+    return (<div className="form-container">
         <WritePost />
-    </>)
+    </div>)
 }
 
 export default PostForm

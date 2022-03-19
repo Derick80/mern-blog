@@ -31,31 +31,36 @@ export default function Login() {
 
 
     return (
-        <form className="form-container" onSubmit={handleSubmit} >
-            <h1>Login</h1>
-            <label>username:</label>
-            <input type='text'
-                required
-                name="username"
-                placeholder="your username"
-                autoFocus={true}
-                value={values.username}
-                onChange={handleChange}
-            />
+        <div className="primary-content">
 
-            <label>Password</label>
-            <input type='password'
-                required
-                name="password"
-                placeholder="Enter your password"
-                autoFocus={true}
-                value={values.password}
-                onChange={handleChange}
-            />
+            <form className="form-container" onSubmit={handleSubmit} >
+                <h1>Login</h1>
+                <label>username:</label>
+                <input type='text'
+                    required
+                    name="username"
+                    placeholder="your username"
+                    autoFocus={true}
+                    value={values.username}
+                    onChange={handleChange}
+                />
 
-            <button type='submit' >
-                login
-            </button>
-        </form>
+                <label>Password</label>
+                <input type='password'
+                    required
+                    name="password"
+                    placeholder="Enter your password"
+                    autoFocus={true}
+                    value={values.password}
+                    onChange={handleChange}
+                />
+
+                <button type='submit' >
+                    login
+                </button>
+            </form>
+
+        </div>
+
     )
 }

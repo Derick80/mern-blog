@@ -1,9 +1,9 @@
-import UploadButton from "../components/PostForm";
+import PostForm from "../components/PostForm";
 
 export default function Create() {
 
-    return <div>
-        <UploadButton />
+    return <div className="primary-content">
+        <PostForm />
 
     </div>
 

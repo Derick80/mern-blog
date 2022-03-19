@@ -120,6 +120,8 @@ footer {
   grid-template-rows: auto;
   gap: 10px;
   row-gap: 1em;
+  justify-content: center;
+ align-items: center;
 
 }
 

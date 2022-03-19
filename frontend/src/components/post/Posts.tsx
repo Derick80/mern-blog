@@ -1,30 +1,12 @@
+import { PostFeedProps } from "../../additional"
 
-
-export type PostsFeed = {
-
-    id: string
-    title: string
-    content: string
-    username: string
-    imageUrl: string
-
-}
-const Posts = (posts: PostsFeed) => {
-    const { id,
-        title,
-        content,
-        username,
-        imageUrl } = posts
-
-
-
+const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
     return (
         <div className="card" >
             <h2 className="card-title">{title}</h2>
             <img className="card-image" src={imageUrl} alt="blog post" />
             <div className='card_body' >
                 <p> {content}</p>
-
                 <p>
                     <br />
                     Written by {username}
@@ -32,12 +14,20 @@ const Posts = (posts: PostsFeed) => {
             </div>
 
             <div className='card_footer'>
-
-
             </div>
-
         </div >
     )
 }
 
-export default Posts
+function PostList(posts: PostFeedProps) {
+    const { id,
+        title,
+        content,
+        username,
+        imageUrl } = posts
+    return (
+        <Posts id={id} title={title} content={content} imageUrl={imageUrl} username={username} />
+    )
+}
+
+export default PostList

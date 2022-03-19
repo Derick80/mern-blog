@@ -14,11 +14,11 @@ export default function Dashboard() {
     if (loading) return <div>loading</div>
     return (
 
-        <>
+        <div className="primary-content">
             {data.getPosts.map((post: any) => {
                 return <Posts key={post.id} {...post} />
             })}
-        </>
+        </div>
     )
 }
 

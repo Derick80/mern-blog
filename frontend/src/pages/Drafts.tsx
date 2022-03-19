@@ -15,7 +15,7 @@ export default function Drafts(): any {
     if (loading) return <div>Loading ...</div>;
     if (error) return `Error! ${error}`;
 
-    return (<>
+    return (<div className="primary-content">
         {data.getDraftPosts.map((draft: any) => {
             return <PostDraftForm key={draft.id}
                 disabled={draft.disabled}
@@ -32,7 +32,7 @@ export default function Drafts(): any {
                 }}
             />
         })}
-    </>)
+    </div>)
 
 
 
