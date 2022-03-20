@@ -1,7 +1,5 @@
-import { Link, NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
-import Icon from '@mdi/react'
-import { mdiAccount, mdiAccountPlusOutline, mdiLogin, mdiPencilPlusOutline } from '@mdi/js'
 import { AuthContext } from "../context/auth"
 import { useContext } from "react"
 

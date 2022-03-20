@@ -190,7 +190,7 @@ export const GET_DRAFTS = gql`
     }
   }
 `
-const DELETE_DRAFT = gql`
+export const DELETE_DRAFT = gql`
   mutation deleteDraft($id: Int) {
     deleteDraft(id: $id) {
       id
