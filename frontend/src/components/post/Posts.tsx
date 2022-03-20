@@ -3,13 +3,13 @@ import { PostFeedProps } from "../../additional"
 const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
     return (
 
-        <article className="card" >
+        <article className="card" style={{ backgroundImage: `url('${imageUrl}')` }} >
             <div className="card-header card-image" >
-                <img src={imageUrl} alt="blog post" />
+                {/* <img src={imageUrl} alt="blog post" /> */}
 
             </div>
 
-            <h2 >{title}</h2>
+            <h4 >{title}</h4>
             <div className='card-content' >
                 <p> {content}</p>
             </div>

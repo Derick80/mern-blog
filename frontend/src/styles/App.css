@@ -34,6 +34,7 @@
   /* main background */
   --clr-mybackground: rgba(166, 166, 166, 1);
   --clr-alt-background: rgba(64, 64, 64, 1);
+  --clr-btn: rgba(219,219,219,1);
   --padding: 1rem;
   margin: 0;
 }
@@ -60,7 +61,15 @@ h2 {
   font-weight: 600;
   margin: 0;
 }
+h3{
+  font-size: var(--fs-H3);
+  margin: 0;
+}
 
+h4{
+  font-size: var(--fs-H4);
+  margin:0;
+}
 h5 {
   font-size: var(--fs-H5);
 }
@@ -156,8 +165,11 @@ nav li a {
 }
 
 .card {
-  background-color: var(--clr-primary-light);
-  color: var(--fclr-primary-light);
+
+  background-size: cover;
+  max-width: 35ch;
+  color: var(--fclr-primary-dark);
+  border-radius: 0.5rem;
   box-shadow: 5px 5px 20px grey;
   overflow: hidden;
 }
@@ -181,15 +193,29 @@ nav li a {
   transform: scale(1.025);
 }
 
-.card h2 {
-  font-size: var(--fs-H3);
-  margin: 0;
-  padding: 0.5rem;
+.card h4 {
+--padding:1rem;
+  position: relative;
+  text-transform: uppercase;
+  width: max-content;
+
+
 }
 
-.card-body {
+.card h4::after{
+  content: "";
+  position: absolute;
+  background: var(--clr-subtext);
+  height: 5px;
+  left: calc(var(--padding)* -1);
+  bottom: 0;
+  width: calc(100% + var(--padding));
+}
+
+.card-content {
+
   padding: 0 var(--padding);
-  margin: 1;
+
 }
 
 .card footer {
@@ -210,14 +236,19 @@ and 16dp for phones = 12px */
 } */
 
 /* #region buttonsIcons */
-.btn {
-  background: none;
-  border: none;
-  padding: 0;
+button {
+  cursor: pointer;
+  display: inline-block;
+  color:var(--fclr-primary-light);
+
+  text-decoration: none;
+  background-color: var(--clr-important);
+  border-radius: .25em;
+  padding: 0.5em, 1.25em;
 }
 
-.btn:hover > span,
-.btn:focus > span {
+.button:hover > span,
+.button:focus > span {
   text-decoration: underline;
   color: red;
 }
