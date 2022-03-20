@@ -2,20 +2,24 @@ import { PostFeedProps } from "../../additional"
 
 const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
     return (
-        <div className="card" >
-            <h2 className="card-title">{title}</h2>
-            <img className="card-image" src={imageUrl} alt="blog post" />
-            <div className='card_body' >
-                <p> {content}</p>
-                <p>
-                    <br />
-                    Written by {username}
-                </p>
+
+        <article className="card" >
+            <div className="card-header card-image" >
+                <img src={imageUrl} alt="blog post" />
+
             </div>
 
-            <div className='card_footer'>
+            <h2 >{title}</h2>
+            <div className='card-content' >
+                <p> {content}</p>
             </div>
-        </div >
+            <footer>
+                <p>Put likes here</p>
+                <p>
+                    Written by {username}
+                </p>
+            </footer>
+        </article >
     )
 }
 
@@ -25,8 +29,9 @@ function PostList(posts: PostFeedProps) {
         content,
         username,
         imageUrl } = posts
-    return (
+    return (<>
         <Posts id={id} title={title} content={content} imageUrl={imageUrl} username={username} />
+    </>
     )
 }
 

@@ -20,7 +20,7 @@ function Header() {
                 <li>
                     <NavLink to="/create">
 
-                        <Icon className="svg-icon" path={mdiPencilPlusOutline} title="Create" />Create
+                        Create
 
                     </NavLink>
                 </li>
@@ -34,7 +34,7 @@ function Header() {
             <ul className="right-nav-ul">
                 <li className="right-li">
                     <NavLink to="/profile">
-                        <Icon className="svg-icon" path={mdiAccount} title="Acount" />Acount
+                        Acount
 
                     </NavLink>
                 </li>
@@ -60,7 +60,7 @@ function Header() {
 
                     <li>
                         <NavLink to="/register">
-                            <Icon className="svg-icon" path={mdiAccountPlusOutline} title="Register" />Register
+                            Register
 
                             {/* <span className="mdi mdi-login">LOGIN</span> */}
                         </NavLink>
@@ -68,7 +68,7 @@ function Header() {
                     </li>
                     <li>
                         <NavLink to="/login">
-                            <Icon className="svg-icon" path={mdiLogin} title="Login" />LOGIN
+                            LOGIN
 
                         </NavLink>
 
