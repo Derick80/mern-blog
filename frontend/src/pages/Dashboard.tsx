@@ -13,12 +13,17 @@ export default function Dashboard() {
 
     if (loading) return <div>loading</div>
     return (
+        <>
 
-        <div className="cards">
-            {data.getPosts.map((post: any) => {
-                return <Posts key={post.id} {...post} />
-            })}
-        </div>
+            <div className="cards">
+                {data.getPosts.map((post: any) => {
+                    return <Posts key={post.id} {...post} />
+                })}
+            </div>
+
+
+        </>
+
     )
 }
 
