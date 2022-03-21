@@ -43,7 +43,4 @@ async function startServer(typeDefs: undefined, resolvers: undefined) {
   )
 }
 
-// app.get('/', (req: Request, res: Response) => {
-//   return res.send('hello world!')
-// })
 startServer(typeDefs, resolvers)

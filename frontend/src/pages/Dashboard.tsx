@@ -15,11 +15,11 @@ export default function Dashboard() {
     return (
         <>
 
-            <div className="cards">
-                {data.getPosts.map((post: any) => {
-                    return <Posts key={post.id} {...post} />
-                })}
-            </div>
+            {/* <div className="cards"> */}
+            {data.getPosts.map((post: any) => {
+                return <Posts key={post.id} {...post} />
+            })}
+            {/* </div> */}
 
 
         </>

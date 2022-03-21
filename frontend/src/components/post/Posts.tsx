@@ -8,7 +8,9 @@ const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
         <article className="card" style={{ backgroundImage: `url('${imageUrl}')` }} >
 
             <div className='card-body' >
-                <h4 >{title}</h4>
+                <div className="card-header" >
+
+                    {title}</div>
                 <div className="card-content">
 
                     <ShowButton content={content} />

@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { ChangeEventHandler, useEffect, useState } from 'react'
+import { UPLOAD_FILE_MUTATION } from '../../utils/hooks/hooks'
+import { ImageUploadButtonProps } from '../PostForm'
 
 
 export type DraftFormProps = {
@@ -14,7 +17,24 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
     const [postId, setPostId] = useState(initialPostId || '')
     const [title, setTitle] = useState(initialTitle || "")
     const [content, setContent] = useState(initialContent || "")
-    return (
+    const [mutate, { data }] = useMutation(UPLOAD_FILE_MUTATION)
+
+    const onChange = ({
+        target: {
+            validity,
+            files: [file]
+        }
+    }: any) => validity.valid && mutate({ variables: { file } })
+
+
+    useEffect(() => {
+        if (data) {
+            return setImageUrl(data.uploadFile.imageUrl.toString())
+        }
+    }, [data, imageUrl])
+
+    return (<>
+        <ImageUploadButton onChange={onChange} />
         <div key={postId}>
             <b>{initialTitle ? "Edit Item" : "Add Item"}</b>
             <div >
@@ -47,7 +67,9 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
                 </div>
                 <div >
                     <span>Image</span>
+                    <img src={imageUrl} alt="add an " />
                     <input
+                        hidden
                         disabled={disabled}
                         type="text"
                         value={initialImageUrl}
@@ -70,5 +92,27 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
                 </div>
             </div>
         </div>
+    </>
     )
+}
+
+export type UploadButtonProps = {
+    onChange: ChangeEventHandler<HTMLInputElement>
+    ImageUpload: Function
+}
+function ImageUploadButton(onChange: ImageUploadButtonProps) {
+    return (
+        <>
+            <div className="upload_button">
+                <label htmlFor='contained-button-file'>
+                </label>
+                <input
+                    type='file'
+                    accept='image/*'
+                    onChange={() => onChange}
+
+                />
+            </div>
+
+        </>)
 }
