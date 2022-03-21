@@ -33,9 +33,9 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
         }
     }, [data, imageUrl])
 
-    return (<>
+    return (<div className='post-create-edit-form'>
         <ImageUploadButton onChange={onChange} />
-        <div key={postId}>
+        <form className="post-form" key={postId}>
             <b>{initialTitle ? "Edit Item" : "Add Item"}</b>
             <div >
                 <div >
@@ -76,23 +76,22 @@ export default function PostDraftForm({ initialTitle, initialContent, initialIma
                         onChange={e => setImageUrl(imageUrl)}
                     />
                 </div>
-                <div>
-                    <button
-                        disabled={disabled}
 
-                        onClick={() => {
-                            if (!imageUrl || !postId) {
-                                onSubmit({ title, content, imageUrl: initialImageUrl, initialPostId })
-                            }
-                            onSubmit({ title, content, imageUrl, postId });
-                        }}
-                    >
-                        Submit
-                    </button>
-                </div>
             </div>
-        </div>
-    </>
+            <button className='post-submit-button'
+                disabled={disabled}
+
+                onClick={() => {
+                    if (!imageUrl || !postId) {
+                        onSubmit({ title, content, imageUrl: initialImageUrl, initialPostId })
+                    }
+                    onSubmit({ title, content, imageUrl, postId });
+                }}
+            >
+                Submit
+            </button>
+        </form>
+    </div>
     )
 }
 
@@ -103,7 +102,7 @@ export type UploadButtonProps = {
 function ImageUploadButton(onChange: ImageUploadButtonProps) {
     return (
         <>
-            <div className="upload_button">
+            <div className="upload-button">
                 <label htmlFor='contained-button-file'>
                 </label>
                 <input

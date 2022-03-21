@@ -57,9 +57,9 @@ function ImageUploadButton(onChange: ImageUploadButtonProps) {
 }
 function PostForm() {
 
-    return (<div className="form-container">
+    return (<>
         <WritePost />
-    </div>)
+    </>)
 }
 
 export default PostForm

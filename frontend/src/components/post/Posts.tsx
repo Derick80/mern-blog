@@ -5,26 +5,31 @@ import ShowMore from "../ShowMore"
 const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
     return (
 
-        <article className="card" style={{ backgroundImage: `url('${imageUrl}')` }} >
+        <div className="card-container">
+            <div className="card" style={{ backgroundImage: `url('${imageUrl}')` }} >
 
-            <div className='card-body' >
-                <div className="card-header" >
+                <div className='card-body' >
+                    <div className="card-header" >
 
-                    {title}</div>
-                <div className="card-content">
+                        {title}</div>
+                    <div className="card-content">
 
-                    <ShowButton content={content} />
+                        <ShowButton content={content} />
+                    </div>
+
+
+
                 </div>
 
-
-                <div className="card-footer">
-                    <p>Put likes here</p>
-                    <p>
-                        Written by {username}
-                    </p>
-                </div>
+            </div >
+            <div className="card-footer">
+                <p>Put likes here</p>
+                <p>
+                    Written by {username}
+                </p>
             </div>
-        </article >
+        </div >
+
     )
 }
 
