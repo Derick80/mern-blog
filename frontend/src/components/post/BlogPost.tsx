@@ -18,8 +18,7 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
 
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
-    const [postImageUrl, setPostImageUrl] = useState<string>('')
+    const [imageUrl, setImageUrl] = useState<string>('')
 
     const [mutate, { data, loading }] = useMutation(UPLOAD_FILE_MUTATION)
 
@@ -35,7 +34,7 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
 
     useEffect(() => {
         if (data) {
-            setPostImageUrl(data.uploadFile.imageUrl)
+            setImageUrl(data.uploadFile.imageUrl)
         }
     }, [data])
     console.log(data);
@@ -79,16 +78,6 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
                     />
                 </div>
 
-                <div >
-                    <span>content</span>
-                    <input
-                        type="text"
-                        name="imageUrl"
-                        value={postImageUrl}
-                        onChange={(e) => setImageUrl(postImageUrl.toString())}
-
-                    />
-                </div>
 
 
             </div>
