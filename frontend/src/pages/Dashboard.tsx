@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
-import ImageUpload from "../components/ImageUpload";
 import Posts from "../components/post/Posts";
 import { AuthContext } from "../context/auth";
 import { FETCH_POSTS_QUERY } from "../utils/graphql/graphql";
@@ -15,7 +14,6 @@ export default function Dashboard() {
     if (loading) return <div>loading</div>
     return (
         <>
-            <ImageUpload />
             <div className="primary-content">
                 {data.getPosts.map((post: any) => {
                     return <Posts key={post.id} {...post} />
