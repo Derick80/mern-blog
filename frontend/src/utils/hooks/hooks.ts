@@ -39,6 +39,12 @@ export const UPLOAD_FILE_MUTATION = gql`
     }
   }
 `
+export const DELETE_POST_MUTATION = gql`
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId)
+  }
+`
+export const usePosts = () => {}
 
 // if (loading) return <div>Loading...</div>
 // if (error) return <div>{JSON.stringify(error, null, 2)}</div>

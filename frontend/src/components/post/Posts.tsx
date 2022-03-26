@@ -27,6 +27,7 @@ const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
                 <p>
                     Written by {username}
                 </p>
+
             </div>
         </div >
 

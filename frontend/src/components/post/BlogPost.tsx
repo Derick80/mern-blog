@@ -19,7 +19,6 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState('')
     const [imageUrl, setImageUrl] = useState<string>('')
-
     const [mutate, { data, loading }] = useMutation(UPLOAD_FILE_MUTATION)
 
 
@@ -31,7 +30,6 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
     }: any) => validity.valid && mutate({ variables: { file } });
 
 
-
     useEffect(() => {
         if (data) {
             setImageUrl(data.uploadFile.imageUrl)
@@ -40,9 +38,9 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
     console.log(data);
 
 
+
     const [createPost] = useMutation(ADD_POST_MUTATION, {
-        update(proxy: any, { data: { createPost: postInput } }, context: any) {
-            console.log(postInput)
+        update(proxy: any, { title, content, imageUrl }: any, context: any) {
             navigate('/drafts')
         },
         variables: { content, title, imageUrl }
@@ -77,8 +75,16 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
                         onChange={(e) => setContent(e.target.value)}
                     />
                 </div>
+                <div >
+                    <input
+                        type="text"
+                        name="imageUrl"
+                        hidden
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(imageUrl.toString())}
 
-
+                    />
+                </div>
 
             </div>
 
