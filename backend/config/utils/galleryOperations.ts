@@ -1,9 +1,12 @@
-import { Buffer } from 'buffer'
-import { FileUpload } from 'graphql-upload'
-
+import { FileUpload, GraphQLUpload } from 'graphql-upload'
 import { v4 as uuid } from 'uuid'
 import { bucket } from '../lib/files/config'
-
+const checkAuth = require('../../middleware/check-auth')
+export interface GalleryResponseTypes {
+  name?: string
+  imageUrl: string
+  imageUserId?: string
+}
 export const checkFileSize = (
   createReadStream: FileUpload['createReadStream'],
   maxSize: number
@@ -32,18 +35,14 @@ export const generateUniqueFilename = (filename: string): string => {
   return `${unique}-${trimmedFilename}`
 }
 
-export const uploadToGoogleCloud = (
+export const storeUpload = (
   createReadStream: FileUpload['createReadStream'],
   filename: string,
-  user: object
-) => {
-  function getImageUrl() {
-    const userId = 'tst_user01'
-    const imageUrl =
-      `https://storage.googleapis.com/blog_bucket_dch/${filename}`.toString()
+  context: any
+): Promise<GalleryResponseTypes> => {
+  const imageUrl =
+    `https://storage.googleapis.com/blog_bucket_dch/${filename}`.toString()
 
-    return { imageUrl, userId }
-  }
   // step 1 - upload the file to Google Cloud Storage
   return new Promise((resolves, rejects) =>
     createReadStream()
@@ -54,6 +53,6 @@ export const uploadToGoogleCloud = (
         })
       )
       .on('error', (err: any) => rejects(err)) // reject on error
-      .on('finish', () => resolves(getImageUrl))
+      .on('finish', () => resolves({ imageUrl }))
   ) // resolve on finish
 }

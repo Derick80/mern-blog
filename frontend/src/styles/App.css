@@ -253,7 +253,7 @@ and 16dp for phones = 12px */
 } */
 
 /* #region buttonsIcons */
-button {
+button, button{
   cursor: pointer;
   display: inline-block;
   color: var(--fclr-primary-light);
@@ -351,6 +351,10 @@ p.material-icons.blue {
     font-size: var(--fs-body-1);
   }
 
+  .sidebear {
+    grid-column: 1;
+    grid-row: 2/7;
+  }
   .primary-content {
     grid-column: 2 / 12;
     grid-row: 2 /7;

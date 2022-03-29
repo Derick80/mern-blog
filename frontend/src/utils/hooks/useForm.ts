@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export type FormInputs = {
   username: string
@@ -7,18 +7,17 @@ export type FormInputs = {
   confirmPassword: string
   title: string
   content: string
-  imageUrl: string
+  imageUrl?: string
+  file: string
 }
 
 export const useForm = (
   callback: () => void,
   initialState: Partial<FormInputs>
 ) => {
-  const [title, setTitle] = useState(initialState)
-  const [content, setContent] = useState(initialState)
-  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle({ [event.target.name]: event.target.value })
-    setContent({ [event.target.name]: event.target.value })
+  const [values, setValues] = useState(initialState)
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [event.target.name]: event.target.value })
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -26,9 +25,8 @@ export const useForm = (
     callback()
   }
   return {
-    title,
-    content,
+    handleChange,
     handleSubmit,
-    handleFormChange
+    values
   }
 }

@@ -2,40 +2,23 @@ import { useMutation } from '@apollo/client'
 import { title } from 'process'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ADD_POST_MUTATION } from '../../utils/graphql/graphql'
-import { UPLOAD_FILE_MUTATION } from '../../utils/hooks/hooks'
+import { ADD_POST_MUTATION, UPLOAD_FILE_MUTATION } from '../../utils/hooks/graphql'
 import { FormInputs, useForm } from '../../utils/hooks/useForm'
 import ImageUpload from '../ImageUpload'
 
 
 
-export type PostProps = {
-    onSubmit: Function
+export type Props = {
+    imageUrl: string
 
 }
-export default function BlogPost(initialState: Partial<FormInputs>) {
+export default function BlogPost(props: Props) {
     let navigate = useNavigate()
 
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState('')
-    const [imageUrl, setImageUrl] = useState<string>('')
-    const [mutate, { data, loading }] = useMutation(UPLOAD_FILE_MUTATION)
+    const [imageUrl, setImageUrl] = useState<string>(props.imageUrl)
 
-
-    const onFileChange = ({
-        target: {
-            validity,
-            files: [file]
-        }
-    }: any) => validity.valid && mutate({ variables: { file } });
-
-
-    useEffect(() => {
-        if (data) {
-            setImageUrl(data.uploadFile.imageUrl)
-        }
-    }, [data])
-    console.log(data);
 
 
 
@@ -88,16 +71,7 @@ export default function BlogPost(initialState: Partial<FormInputs>) {
 
             </div>
 
-            <div className="upload_button">
-                <label htmlFor='contained-button-file'>
-                </label>
-                <input
-                    type='file'
-                    accept='image/*'
-                    onChange={onFileChange}
 
-                />
-            </div>
             <button className='post-submit-button'
 
 

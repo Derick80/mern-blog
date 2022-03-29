@@ -1,8 +1,9 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
+import Gallery from "../components/ImageGallery";
 import Posts from "../components/post/Posts";
-import { AuthContext } from "../context/auth";
-import { FETCH_POSTS_QUERY } from "../utils/graphql/graphql";
+import { AuthContext } from "../utils/context/auth";
+import { FETCH_POSTS_QUERY } from "../utils/hooks/graphql";
 
 
 

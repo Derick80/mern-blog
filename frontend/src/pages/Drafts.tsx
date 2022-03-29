@@ -1,8 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
 import Posts from "../components/post/Posts";
-import { AuthContext } from "../context/auth";
-import { FETCH_DRAFTS_QUERY } from "../utils/graphql/graphql";
+import { AuthContext } from "../utils/context/auth";
+import { FETCH_DRAFTS_QUERY } from "../utils/hooks/graphql";
 
 
 export default function Drafts(): any {

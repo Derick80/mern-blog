@@ -5,6 +5,7 @@ const typeDefs = gql`
 
   type File {
     imageUrl: String
+    userId: String
     filename: String
     mimetype: String
     encoding: String
@@ -47,12 +48,28 @@ const typeDefs = gql`
     username: String!
     content: String!
   }
+  type Gallery {
+    id: ID!
+    createdAt: String!
+    imageUrl: String!
+    imageUserId: String!
+    imageUserName: String!
+  }
+  type GalleryResponse {
+    id: ID!
+    name: String
+    createdAt: String!
+    imageUrl: String
+    imageUserId: String
+  }
   type Query {
     getPosts: [Post]
     getDraftPosts: [Post]
     getPostbyId(postId: ID!): Post
     imageUrl: String
     uploads: [File]
+    getUserImageGallery: [Gallery]
+    imageUploads: [Gallery]
   }
   input RegisterInput {
     username: String!
@@ -71,8 +88,18 @@ const typeDefs = gql`
     content: String!
     imageUrl: String
   }
+  input CreateGalleryEntry {
+    picture: Upload!
+    name: String!
+    imageUrl: String
+    imageUserId: String
+    createdAt: String
+  }
   type Mutation {
+    addImage(file: Upload!): Boolean
     uploadFile(file: Upload!): File!
+    createGalleryEntry(input: CreateGalleryEntry!): Boolean
+
     editPost(postUpdateInput: PostUpdateInput): Post!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!

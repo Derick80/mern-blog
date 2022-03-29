@@ -1,6 +1,7 @@
 import { UserInputError } from 'apollo-server-core'
 import { createReadStream } from 'fs'
 import { FileUpload, GraphQLUpload } from 'graphql-upload'
+const checkAuth = require('../../middleware/check-auth')
 
 const { createWriteStream } = require('fs')
 
@@ -10,7 +11,7 @@ import {
   generateUniqueFilename,
   uploadToGoogleCloud
 } from '../../config/utils/fileOperations'
-import { FileArgs } from '../../config/utils/types'
+import { FileArgs, ImageFileArgs } from '../../config/utils/types'
 const imageUrl = ''
 module.exports = {
   Query: {
@@ -19,9 +20,11 @@ module.exports = {
   Upload: GraphQLUpload,
 
   Mutation: {
-    uploadFile: async (parent: any, args: FileArgs) => {
+    uploadFile: async (parent: any, args: ImageFileArgs, context: any) => {
       const { filename, mimetype, createReadStream } = await args.file
+      const { user } = checkAuth(context)
       // first check file size before proceeding
+
       try {
         const oneGb: number = 1000000000
         await checkFileSize(createReadStream, oneGb)
@@ -34,11 +37,14 @@ module.exports = {
       const uniqueFilename = generateUniqueFilename(filename)
       // upload to Google Cloud Storage
       try {
-        const url = await uploadToGoogleCloud(createReadStream, uniqueFilename)
-        const imageUrl = `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`
-
+        await uploadToGoogleCloud(createReadStream, uniqueFilename, user)
+        const imageUrl =
+          `https://storage.googleapis.com/blog_bucket_dch/${uniqueFilename}`.toString()
+        const userId = user.id
         return {
-          imageUrl
+          imageUrl,
+          filename,
+          userId
         }
       } catch (err) {
         throw new UserInputError('Error with uploading to Google Cloud')

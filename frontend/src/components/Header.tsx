@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-import { AuthContext } from '../context/auth'
+import { AuthContext } from '../utils/context/auth'
 import { useContext } from 'react'
 
 function Header() {
@@ -14,6 +14,9 @@ function Header() {
                 </li>
                 <li>
                     <NavLink to='/create'>Create</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/gallery'>Image gallery</NavLink>
                 </li>
                 <li>
                     <NavLink to='/drafts'>drafts</NavLink>

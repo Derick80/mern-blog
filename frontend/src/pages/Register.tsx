@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import { REGISTER_USER } from "../utils/graphql/graphql";
-import { useForm } from "../utils/hooks/hooks";
+import { REGISTER_USER } from "../utils/hooks/graphql";
+import { useForm } from "../utils/hooks/useForm";
 
 
 export default function Register() {

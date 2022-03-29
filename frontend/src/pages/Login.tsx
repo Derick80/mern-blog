@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth";
-import { LOGIN_USER } from "../utils/graphql/graphql";
-import { useForm } from "../utils/hooks/hooks"
+import { AuthContext } from "../utils/context/auth";
+import { LOGIN_USER } from "../utils/hooks/graphql";
+import { useForm } from "../utils/hooks/useForm"
 
 export default function Login() {
     let navigate = useNavigate()

@@ -1,6 +1,7 @@
 const usersResolver = require('./users')
 const postsResolver = require('./posts')
 const imagesResolver = require('./images')
+const galleryResolver = require('./gallery')
 
 module.exports = {
   Post: {
@@ -13,11 +14,13 @@ module.exports = {
   Query: {
     ...usersResolver.Query,
     ...postsResolver.Query,
-    ...imagesResolver.Query
+    ...imagesResolver.Query,
+    ...galleryResolver.Query
   },
   Mutation: {
     ...usersResolver.Mutation,
     ...postsResolver.Mutation,
-    ...imagesResolver.Mutation
+    ...imagesResolver.Mutation,
+    ...galleryResolver.Mutation
   }
 }

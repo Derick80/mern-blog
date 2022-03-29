@@ -1,20 +1,16 @@
 import React from 'react'
-
-
-
-
 interface Props {
     children?: React.ReactNode;
+    disabled?: boolean;
     onClick?: () => void;
-    onChange?: React.FormEventHandler<HTMLInputElement>;
+    onChange?: () => void
+    className?: string
 
 }
 
-
-
-export default function Button({ onClick, children }: Props) {
+export default function Button({ onClick, className, children, ...props }: Props) {
     return (
-        <button>
+        <button className={className} onClick={onClick}>
             {children}
 
         </button>
