@@ -1,3 +1,6 @@
+import { IoTSecureTunneling } from 'aws-sdk'
+import { storeUpload } from '../../config/utils/postAndImageOperations'
+
 const Post = require('../../models/postModel')
 const checkAuth = require('../../middleware/check-auth')
 
@@ -116,6 +119,40 @@ module.exports = {
         await post.save()
         return post
       } else throw new Error(`post not found`)
+    },
+    createPostandImage: async (
+      _: any,
+      { input: { picture, name, title, content } }: any,
+      context: any
+    ) => {
+      const { imageUrl } = await processUpload(picture)
+      const { user } = checkAuth(context)
+
+      try {
+        const newPostandImage = new Post({
+          name: name,
+          imageUrl: imageUrl,
+          imageUserId: user.id,
+          imageUserName: user.username,
+          createdAt: new Date().toISOString()
+        })
+        const postAndImage = await newPostandImage.save()
+        console.log('postandImage', postAndImage)
+        return IoTSecureTunneling
+      } catch (error) {
+        throw new Error('unable to save')
+      }
     }
   }
+}
+
+const processUpload = async (upload: any) => {
+  const { createReadStream, filename, context } = await upload
+
+  const { imageUserId, imageUrl, name } = await storeUpload(
+    createReadStream,
+    filename,
+    context
+  )
+  return { imageUrl, imageUserId, filename, name }
 }

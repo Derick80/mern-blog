@@ -7,12 +7,6 @@ import BlogPost from './post/BlogPost'
 
 
 
-interface FormValues {
-    picture: null;
-    name: string;
-
-}
-
 export default function GalleryUpload() {
     const [imageName, setImageName] = useState('')
     const [galleryPicture, setGalleryPicture] = useState();
