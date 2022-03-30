@@ -2,10 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 import { useContext } from 'react'
 import { AuthContext } from '../utils/context/auth'
-import Gallery from './ImageGallery'
 import Tree from './Tree'
-import { useQuery } from '@apollo/client'
-import { GET_USER_GALLERY } from '../utils/hooks/graphql'
 
 function SideBar() {
     const { user, logout } = useContext(AuthContext)

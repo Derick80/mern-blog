@@ -7,8 +7,7 @@ import { FETCH_DRAFTS_QUERY } from "../utils/hooks/graphql";
 
 export default function Drafts(): any {
     const { loading, data } = useQuery(FETCH_DRAFTS_QUERY)
-    const { user } = useContext(AuthContext);
-    console.log(data, user)
+    console.log(data)
 
     if (loading) return <div>loading</div>
 

@@ -1,10 +1,7 @@
 import { useMutation } from '@apollo/client'
-import { title } from 'process'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ADD_POST_MUTATION, UPLOAD_FILE_MUTATION } from '../../utils/hooks/graphql'
-import { FormInputs, useForm } from '../../utils/hooks/useForm'
-import ImageUpload from '../ImageUpload'
+import { ADD_POST_MUTATION } from '../../utils/hooks/graphql'
 
 
 

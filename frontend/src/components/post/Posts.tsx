@@ -1,8 +1,15 @@
-import { PostFeedProps } from "../../additional"
+import { useContext } from "react";
+import { PostFeedProps, IAuth } from "../../additional"
+import { AuthContext } from "../../utils/context/auth";
+import Button from "../Button";
+import DeleteButton from "../DeleteButton";
+import EditButton from "../EditButton";
+import PublishButton from "../PublishButton";
 import ShowButton from "../ShowMore"
-import ShowMore from "../ShowMore"
 
-const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
+const Posts = ({ id, title, content, username, imageUrl, author }: PostFeedProps) => {
+    const { user } = useContext(AuthContext) as IAuth;
+    console.log("posts user", user.username);
     return (
 
         <div className="card-container">
@@ -27,7 +34,8 @@ const Posts = ({ id, title, content, username, imageUrl }: PostFeedProps) => {
                 <p>
                     Written by {username}
                 </p>
-
+                {/* @ts-ignore */}
+                {user && user.username === username && <><DeleteButton postId={id} /> <PublishButton postId={id} /> <EditButton postId={id} /></>}
             </div>
         </div >
 
@@ -39,9 +47,10 @@ function PostList(posts: PostFeedProps) {
         title,
         content,
         username,
-        imageUrl } = posts
+        imageUrl,
+        author } = posts
     return (<>
-        <Posts id={id} title={title} content={content} imageUrl={imageUrl} username={username} />
+        <Posts id={id} title={title} content={content} imageUrl={imageUrl} username={username} author={author} />
     </>
     )
 }

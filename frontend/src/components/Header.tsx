@@ -16,6 +16,9 @@ function Header() {
                     <NavLink to='/create'>Create</NavLink>
                 </li>
                 <li>
+                    <NavLink to='/createpost'>Create a Post with an Image V.2</NavLink>
+                </li>
+                <li>
                     <NavLink to='/gallery'>Image gallery</NavLink>
                 </li>
                 <li>

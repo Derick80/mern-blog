@@ -1,8 +1,9 @@
 import { AuthenticationError } from 'apollo-server-express'
+import { Request } from 'express'
 
 const jwt = require('jsonwebtoken')
 
-module.exports = (context: { req: any }) => {
+module.exports = (context: { req: Request }): { user: typeof User } => {
   //context = {...headers}
   const authHeader = context.req.headers.authorization
   if (authHeader) {

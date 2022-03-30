@@ -5,6 +5,7 @@ interface Props {
     onClick?: () => void;
     onChange?: () => void
     className?: string
+    id?: string
 
 }
 

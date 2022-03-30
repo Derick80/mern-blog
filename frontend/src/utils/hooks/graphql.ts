@@ -86,56 +86,41 @@ export const FETCH_DRAFTS_QUERY = gql`
     }
   }
 `
-// export const CREATE_POST_MUTATION = gql`
-//   mutation createPost($title: String!, $content: String!, $imageUrl: String!) {
-//     createPost(
-//       postInput: { title: $title, content: $content, imageUrl: $imageUrl }
-//     ) {
-//       id
-//       title
-//       author
-//       imageUrl
-//       content
-//       username
-//       createdAt
-//       likes {
-//         id
-//         likedBy
-//         createdAt
-//       }
-//     }
-//   }
-// `
-
-export const PUBLISH_POST = gql`
-  mutation publishPost(
-    $title: String!
-    $content: String!
-    $imageUrl: String!
-    $postId: String!
-  ) {
-    publishPost(
-      title: $title
-      content: $content
-      imageUrl: $imageUrl
-      postId: $postId
-    ) {
+export const GET_POST_TO_EDIT_BY_ID_QUERY = gql`
+  query getPostbyId($postId: ID!) {
+    getPostbyId(postId: $postId) {
       id
       title
-      author
-      imageUrl
       content
-      username
       createdAt
+      author
+      username
+      published
+      likeCount
+      imageUrl
       likes {
-        id
         likedBy
+        createdAt
+      }
+      commentCount
+      comments {
+        content
+        username
         createdAt
       }
     }
   }
 `
-
+export const PUBLISH_POST = gql`
+  mutation publishPost($postId: ID!) {
+    publishPost(postId: $postId)
+  }
+`
+export const DELETE_POST_MUTATION = gql`
+  mutation deletePost($postId: ID!) {
+    deletePost(postId: $postId)
+  }
+`
 export const UPLOAD_SINGLE_FILE_MUTATION = gql`
   mutation ($file: Upload!) {
     uploadFile(file: $file) {
@@ -164,11 +149,6 @@ export const UPLOAD_FILE_MUTATION = gql`
     }
   }
 `
-export const DELETE_POST_MUTATION = gql`
-  mutation deletePost($postId: ID!) {
-    deletePost(postId: $postId)
-  }
-`
 
 export const ADD_POST_MUTATION = gql`
   mutation createPost($title: String!, $content: String!, $imageUrl: String!) {
@@ -190,6 +170,7 @@ export const ADD_POST_MUTATION = gql`
     }
   }
 `
+
 export const EDIT_POST_MUTATION = gql`
   mutation editPost(
     $postId: ID!
@@ -224,16 +205,7 @@ export const GET_DRAFTS = gql`
     }
   }
 `
-export const DELETE_DRAFT = gql`
-  mutation deleteDraft($id: Int) {
-    deleteDraft(id: $id) {
-      id
-      title
-      content
-      imageUrl
-    }
-  }
-`
+
 export const GET_USER_GALLERY = gql`
   {
     getUserImageGallery {
@@ -248,5 +220,10 @@ export const GET_USER_GALLERY = gql`
 export const CREATE_GALLERY_ENTRY = gql`
   mutation CreateGalleryEntry($input: CreateGalleryEntry!) {
     createGalleryEntry(input: $input)
+  }
+`
+export const CREATE_IMAGE_POST = gql`
+  mutation CreatePostandImage($input: CreatePostandImage) {
+    createPostandImage(input: $input)
   }
 `

@@ -1,3 +1,4 @@
+import { AuthenticationError } from 'apollo-server-core'
 import { IoTSecureTunneling } from 'aws-sdk'
 import { storeUpload } from '../../config/utils/postAndImageOperations'
 
@@ -27,7 +28,7 @@ module.exports = {
         throw new Error("We didn't find any posts")
       }
     },
-    async getPostbyId(_: any, { postId }: any) {
+    getPostbyId: async (_: any, { postId }: any, context: any) => {
       try {
         const post = await Post.findById(postId)
         if (post) {
@@ -61,6 +62,17 @@ module.exports = {
 
       return post
     },
+    deletePost: async (_: any, { postId }: any, context: any) => {
+      try {
+        const post = await Post.findById(postId)
+        console.log('backend post deletion log', post)
+
+        await post.delete()
+        return 'Post Deleted'
+      } catch (error) {
+        throw new Error('unable to delete')
+      }
+    },
     editPost: async (
       _: any,
       { postUpdateInput: { title, content, imageUrl, postId } }: any,
@@ -77,26 +89,17 @@ module.exports = {
     },
     publishPost: async (
       _: any,
-      { args: { title, content, imageUrl, postId } }: any,
+      { postId }: any,
 
       context: any
     ) => {
-      const { user } = checkAuth(context)
-      console.log(user)
-      const updatePost = await Post.findById(postId)
-      if (updatePost) {
-        Post({
-          title,
-          content,
-          imageUrl,
-          published: true,
+      const updatePost = await Post.findByIdAndUpdate(postId, {
+        published: true
+      })
 
-          createdAt: new Date().toISOString()
-        })
-      }
-      const post = await updatePost.save(postId)
+      const post = await updatePost.save()
 
-      return post
+      return true
     },
     likePost: async (_: any, { postId }: any, context: any) => {
       const { user } = checkAuth(context)
@@ -130,15 +133,19 @@ module.exports = {
 
       try {
         const newPostandImage = new Post({
+          title: title,
+          content: content,
+          username: user.username,
           name: name,
           imageUrl: imageUrl,
           imageUserId: user.id,
           imageUserName: user.username,
+          author: user.id,
           createdAt: new Date().toISOString()
         })
         const postAndImage = await newPostandImage.save()
         console.log('postandImage', postAndImage)
-        return IoTSecureTunneling
+        return true
       } catch (error) {
         throw new Error('unable to save')
       }
