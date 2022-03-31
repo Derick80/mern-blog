@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
-import { AuthContext } from "../../utils/context/auth";
-import { GET_USER_GALLERY } from "../../utils/hooks/graphql";
+import { AuthContext } from "../../../utils/context/auth";
+import { GET_USER_GALLERY } from "../../../utils/hooks/graphql";
 import Base from "./Base";
 import List from "./Branch";
 

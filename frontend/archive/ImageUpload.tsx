@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
-import { UPLOAD_SINGLE_FILE_MUTATION } from '../utils/hooks/graphql'
-import BlogPost from './post/BlogPost'
+import { UPLOAD_SINGLE_FILE_MUTATION } from '../src/utils/hooks/graphql'
+import CreatePost from '../src/components/post/CreatePost'
 
 export default function ImageUpload() {
     const [imageUrl, setImageUrl] = useState('')
@@ -31,7 +31,7 @@ export default function ImageUpload() {
     return (
         <>
             <ImageUploadButton onChange={onChange} />
-            <BlogPost imageUrl={imageUrl} />
+            <CreatePost imageUrl={imageUrl} />
         </>
     )
 }

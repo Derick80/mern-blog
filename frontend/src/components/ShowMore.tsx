@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Button from './Button'
+import Button from './common/Button'
 
 function ShowButton({ ...props }) {
     let content = props.content

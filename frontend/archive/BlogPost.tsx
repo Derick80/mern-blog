@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ADD_POST_MUTATION } from '../../utils/hooks/graphql'
+import { ADD_POST_MUTATION } from '../src/utils/hooks/graphql'
 
 
 

@@ -172,26 +172,8 @@ export const ADD_POST_MUTATION = gql`
 `
 
 export const EDIT_POST_MUTATION = gql`
-  mutation editPost(
-    $postId: ID!
-    $title: String!
-    $content: String!
-    $imageUrl: String!
-  ) {
-    editPost(
-      postUpdateInput: {
-        title: $title
-        content: $content
-        imageUrl: $imageUrl
-        postId: $postId
-      }
-    ) {
-      id
-      title
-      content
-      imageUrl
-      published
-    }
+  mutation EditPost($input: PostAndImageUpdate) {
+    editPost(input: $input)
   }
 `
 export const GET_DRAFTS = gql`

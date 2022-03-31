@@ -31,6 +31,7 @@ const typeDefs = gql`
     createdAt: String
     imageUrl: String
     author: String!
+    name: String
     published: Boolean
     likes: [Like]!
     likeCount: Int!
@@ -106,12 +107,21 @@ const typeDefs = gql`
     content: String!
     createdAt: String
   }
+
+  input PostAndImageUpdate {
+    postId: String!
+    picture: Upload
+    name: String
+    imageUrl: String
+    title: String
+    content: String
+  }
   type Mutation {
     addImage(file: Upload!): Boolean
     uploadFile(file: Upload!): File!
     createGalleryEntry(input: CreateGalleryEntry!): Boolean
-    createPostandImage(input: CreatePostandImage!): Boolean
-    editPost(postUpdateInput: PostUpdateInput): Post!
+    createPostandImage(input: CreatePostandImage): Boolean
+    editPost(input: PostAndImageUpdate): Boolean!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!

@@ -15,6 +15,9 @@ const PostSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  name: {
+    type: String
+  },
   imageUrl: {
     type: String
   },

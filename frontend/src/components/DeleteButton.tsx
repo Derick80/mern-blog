@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { DELETE_POST_MUTATION, FETCH_DRAFTS_QUERY } from '../utils/hooks/graphql'
-import Button from './Button'
+import Button from './common/Button'
 
 export interface DeleteButtonProps {
     postId: string

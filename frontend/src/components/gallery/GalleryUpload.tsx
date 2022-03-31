@@ -1,8 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import { useMutation } from '@apollo/client'
 import React, { FormEvent, useEffect, useState } from 'react'
-import { CREATE_GALLERY_ENTRY, UPLOAD_SINGLE_FILE_MUTATION } from '../utils/hooks/graphql'
-import BlogPost from './post/BlogPost'
+import { CREATE_GALLERY_ENTRY, UPLOAD_SINGLE_FILE_MUTATION } from '../../utils/hooks/graphql'
 
 
 

@@ -21,6 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src", "additional.d.ts"
-  ]
+    "src", "src/additional.d.ts", "archive/PostAndImageForm.tsx", "archive/Create.tsx", "archive/PostForm.tsx", "archive/PostFormInput.tsx", "archive/PostImageTest.tsx", "archive/ImageUpload.tsx", "archive/BlogPost.tsx", "archive/formUse.ts", "archive/SideBar.tsx"
+  ],
+  "exclude": ["archive", "node_modules"]
 }

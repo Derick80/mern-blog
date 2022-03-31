@@ -1,6 +1,4 @@
-import React from 'react'
-import GalleryUpload from '../components/GalleryUpload'
-import ImageGallery from '../components/ImageGallery'
+import GalleryUpload from '../components/gallery/GalleryUpload'
 
 export default function Gallery() {
     return (

@@ -1,10 +1,8 @@
-import ImageUpload from "../components/ImageUpload";
-import BlogPost from "../components/post/BlogPost";
+import CreatePost from '../components/post/CreatePost'
+
 
 export default function Create() {
-
-    return <div className="create-edit-post-container">
-        <ImageUpload />
-    </div>
-
+    return (
+        <CreatePost />
+    )
 }

@@ -1,64 +1,72 @@
 import { useMutation } from '@apollo/client'
-import React, { useState } from 'react'
+import React, { BaseSyntheticEvent, ChangeEventHandler, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { CREATE_IMAGE_POST } from '../utils/hooks/graphql'
+import { CREATE_IMAGE_POST } from '../src/utils/hooks/graphql'
 
 type FormValues = {
     title: string
     content: string
     picture: null
+    name: string
 }
 
+
+export interface FormInput {
+
+}
 export default function PostAndImageForm() {
     const { register, handleSubmit } = useForm<FormValues>()
     const [formData, setFormData] = useState({
         picture: null,
         title: '',
-        content: ''
+        content: '',
+        name: ''
     })
     const [createPostAndImage, { loading, error }] = useMutation(
         CREATE_IMAGE_POST,
         {
-            variables: { input: { picture: formData.picture, title: formData.title, content: formData.content } }
+            variables: { input: { picture: formData.picture, title: formData.title, content: formData.content, name: formData.name } }
         }
     )
 
     const onSubmit: SubmitHandler<FormValues> = (input: FormValues) => createPostAndImage();
 
 
-    function onChange({ target }: any) {
-        const value = target.type
-        setFormData((prevState) => ({
-            ...prevState,
-            [target.name]: value
-        }))
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value })
     }
 
-    const handlePictureChange = (e: any) => {
-        const picture = e.target.files[0]
-        setFormData((prevState) => ({
-            ...prevState,
-            picture: picture
-        }))
+
+
+    const handlePictureChange = (event: BaseSyntheticEvent) => {
+        setFormData({ ...formData, [event.target.name]: event.target.files[0] })
     }
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <input
                 type='text'
                 placeholder='Title'
-                {...register('title', { min: 10 })}
+                {...register('title')}
 
                 value={formData.title}
-                onChange={onChange}
+                onChange={handleInputChange}
             />
             <input
                 type='text'
                 placeholder='Content'
                 {...register('content', { required: true })}
                 value={formData.content}
-                onChange={onChange}
+                onChange={handleInputChange}
             />
-
+            <input
+                type='text'
+                placeholder='Name your Image'
+                {...register('name', { required: true })}
+                value={formData.name}
+                onChange={handleInputChange}
+            />
             <input
                 {...register('picture')}
                 accept='image/*'

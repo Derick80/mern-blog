@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom'
 
 import { useContext } from 'react'
-import { AuthContext } from '../utils/context/auth'
-import Tree from './Tree'
+import { AuthContext } from '../src/utils/context/auth'
+import Tree from '../src/components/Tree'
 
 function SideBar() {
     const { user, logout } = useContext(AuthContext)

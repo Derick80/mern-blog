@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { PostFeedProps, IAuth } from "../../additional"
 import { AuthContext } from "../../utils/context/auth";
-import Button from "../Button";
+import Button from "../common/Button";
 import DeleteButton from "../DeleteButton";
 import EditButton from "../EditButton";
 import PublishButton from "../PublishButton";

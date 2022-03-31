@@ -15,6 +15,32 @@ export interface IAuth {
   user
 }
 
+export interface CreatePostFormValues {
+  picture: null
+  title: string
+  content: string
+  name: string
+}
+
+export interface UpdatePostAndImageFormValues {
+  picture?: null
+  title: string
+  content: string
+  name: string
+  imageUrl?: string
+}
+export type FormValues = {
+  username: string
+  email: string
+  password: string
+  confirmPassword: string
+  title: string
+  content: string
+  imageUrl?: string
+  file: string
+  picture: null
+  name: string
+}
 export type UseFormProps<
   TFieldValues extends FieldValues = FieldValues,
   TContext extends object = object

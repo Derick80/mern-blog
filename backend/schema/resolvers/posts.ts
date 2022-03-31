@@ -75,17 +75,39 @@ module.exports = {
     },
     editPost: async (
       _: any,
-      { postUpdateInput: { title, content, imageUrl, postId } }: any,
+      { input: { picture, title, content, name, postId } }: any,
       context: any
     ) => {
-      const updatePost = await Post.findByIdAndUpdate(postId, {
-        title,
-        content,
-        imageUrl,
-        published: true
-      })
+      const { user } = checkAuth(context)
 
-      return updatePost
+      try {
+        if (picture) {
+          const { imageUrl } = await processUpload(picture)
+          const updatePost = await Post.findByIdAndUpdate(postId, {
+            title,
+            content,
+            imageUrl: imageUrl,
+            imageUserId: user.id,
+            imageUserName: user.username,
+            name
+          })
+          const post = await updatePost.save()
+          console.log('first try', post)
+
+          return true
+        } else {
+          const updatePost = await Post.findByIdAndUpdate(postId, {
+            title,
+            content,
+            name
+          })
+          const post = await updatePost.save()
+          console.log('2nd try', post)
+          return true
+        }
+      } catch (error) {
+        throw new Error('unable to save')
+      }
     },
     publishPost: async (
       _: any,

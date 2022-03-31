@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PUBLISH_POST } from '../utils/hooks/graphql'
-import Button from './Button'
+import Button from './common/Button'
 
 
 export interface PublishButtonProps {
