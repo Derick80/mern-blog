@@ -1,9 +1,8 @@
 import { useMutation } from '@apollo/client'
-import { title } from 'process'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { CreatePostFormValues, UpdatePostAndImageFormValues } from '../../additional'
+import { UpdatePostAndImageFormValues } from '../../additional'
 import { EDIT_POST_MUTATION } from '../../utils/hooks/graphql'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
@@ -11,7 +10,7 @@ import FormInput from '../common/form/FormInput'
 export default function EditPost({ data }: any) {
     let navigate = useNavigate()
     const {
-        handleSubmit,
+
         formState: { errors }
     } = useForm()
     const { title, content, imageUrl, name, id } = data.getPostbyId
@@ -28,7 +27,7 @@ export default function EditPost({ data }: any) {
         EDIT_POST_MUTATION,
         {
             update() {
-                navigate('/feed')
+                navigate('/')
             },
             variables: {
                 input: {
@@ -51,7 +50,7 @@ export default function EditPost({ data }: any) {
     const onSubmit: SubmitHandler<UpdatePostAndImageFormValues> = (
     ) => postAndImageUpdate()
     return (
-        <>
+        <div className="create-edit-post-container">
             <Form
                 buttonLabel='Submit'
 
@@ -93,5 +92,5 @@ export default function EditPost({ data }: any) {
 
                 <li>{title}</li>
             </ul>
-        </>)
+        </div>)
 }

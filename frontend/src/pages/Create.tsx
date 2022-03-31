@@ -2,7 +2,10 @@ import CreatePost from '../components/post/CreatePost'
 
 
 export default function Create() {
-    return (
+    return (<div className="create-edit-post-container">
+
         <CreatePost />
+    </div>
+
     )
 }

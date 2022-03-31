@@ -91,8 +91,8 @@ module.exports = {
             imageUserName: user.username,
             name
           })
-          const post = await updatePost.save()
-          console.log('first try', post)
+          const postA = await updatePost.save()
+          console.log('first try', postA)
 
           return true
         } else {
@@ -101,8 +101,8 @@ module.exports = {
             content,
             name
           })
-          const post = await updatePost.save()
-          console.log('2nd try', post)
+          const postB = await updatePost.save()
+          console.log('2nd try', postB)
           return true
         }
       } catch (error) {
