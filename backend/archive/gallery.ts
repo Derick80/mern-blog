@@ -7,8 +7,8 @@ import {
   GalleryResponseTypes,
   generateUniqueFilename,
   storeUpload
-} from '../../config/utils/galleryOperations'
-import { FileArgs } from '../../config/utils/types'
+} from '../config/utils/galleryOperations'
+import { FileArgs } from '../config/utils/types'
 
 const Gallery = require('../../models/galleryModel')
 const checkAuth = require('../../middleware/check-auth')

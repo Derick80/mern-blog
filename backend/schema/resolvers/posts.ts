@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-core'
-import { IoTSecureTunneling } from 'aws-sdk'
+import { GraphQLUpload } from 'graphql-upload'
 import { storeUpload } from '../../config/utils/postAndImageOperations'
 
 const Post = require('../../models/postModel')
@@ -15,6 +15,7 @@ module.exports = {
         throw new Error("We didn't find any posts")
       }
     },
+
     getDraftPosts: async (_: any, _args: any, context: any) => {
       const { user } = checkAuth(context)
 
@@ -41,6 +42,8 @@ module.exports = {
       }
     }
   },
+  Upload: GraphQLUpload,
+
   Mutation: {
     createPost: async (
       _: any,

@@ -1,7 +1,5 @@
 const usersResolver = require('./users')
 const postsResolver = require('./posts')
-const imagesResolver = require('./images')
-const galleryResolver = require('./gallery')
 
 module.exports = {
   Post: {
@@ -9,18 +7,14 @@ module.exports = {
     commentCount: (parent: any) => parent.comments.length
   },
   Upload: {
-    ...imagesResolver.Upload
+    ...postsResolver.Upload
   },
   Query: {
     ...usersResolver.Query,
-    ...postsResolver.Query,
-    ...imagesResolver.Query,
-    ...galleryResolver.Query
+    ...postsResolver.Query
   },
   Mutation: {
     ...usersResolver.Mutation,
-    ...postsResolver.Mutation,
-    ...imagesResolver.Mutation,
-    ...galleryResolver.Mutation
+    ...postsResolver.Mutation
   }
 }

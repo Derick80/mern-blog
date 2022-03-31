@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 import { FileUpload } from 'graphql-upload'
 
 import { v4 as uuid } from 'uuid'
-import { bucket } from '../lib/files/config'
+import { bucket } from '../config/lib/files/config'
 
 export const checkFileSize = (
   createReadStream: FileUpload['createReadStream'],

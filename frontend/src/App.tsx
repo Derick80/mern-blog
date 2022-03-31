@@ -12,7 +12,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthProvider } from "./utils/context/auth";
 import Drafts from "./pages/Drafts";
-import Gallery from "./pages/Gallery";
 import CreatePost from "./pages/Create";
 import Edit from "./pages/Edit";
 import Create from "./pages/Create";
@@ -29,7 +28,6 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/gallery" element={<Gallery />} />
             <Route path="/createpost" element={<CreatePost />} />
             <Route path="/drafts" element={<Drafts />} />
             <Route path="/editpost/:postId" element={<Edit />} />

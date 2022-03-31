@@ -21,7 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src", "src/additional.d.ts", "archive/PostAndImageForm.tsx", "archive/Create.tsx", "archive/PostForm.tsx", "archive/PostFormInput.tsx", "archive/PostImageTest.tsx", "archive/ImageUpload.tsx", "archive/BlogPost.tsx", "archive/formUse.ts", "archive/SideBar.tsx"
+    "src", "src/additional.d.ts", "archive/PostAndImageForm.tsx", "archive/Create.tsx", "archive/PostForm.tsx", "archive/PostFormInput.tsx", "archive/PostImageTest.tsx", "archive/ImageUpload.tsx", "archive/BlogPost.tsx", "archive/formUse.ts", "archive/SideBar.tsx", "archive/gallery", "archive/Gallery.tsx", "archive/Tree"
   ],
   "exclude": ["archive", "node_modules"]
 }

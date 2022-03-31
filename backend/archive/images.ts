@@ -5,13 +5,13 @@ const checkAuth = require('../../middleware/check-auth')
 
 const { createWriteStream } = require('fs')
 
-import { imageBucket } from '../../config/lib/files/config'
+import { imageBucket } from '../config/lib/files/config'
 import {
   checkFileSize,
   generateUniqueFilename,
   uploadToGoogleCloud
-} from '../../config/utils/fileOperations'
-import { FileArgs, ImageFileArgs } from '../../config/utils/types'
+} from './fileOperations'
+import { FileArgs, ImageFileArgs } from '../config/utils/types'
 const imageUrl = ''
 module.exports = {
   Query: {

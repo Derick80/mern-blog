@@ -117,8 +117,6 @@ const typeDefs = gql`
     content: String
   }
   type Mutation {
-    addImage(file: Upload!): Boolean
-    uploadFile(file: Upload!): File!
     createGalleryEntry(input: CreateGalleryEntry!): Boolean
     createPostandImage(input: CreatePostandImage): Boolean
     editPost(input: PostAndImageUpdate): Boolean!
