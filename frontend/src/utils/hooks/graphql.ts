@@ -49,7 +49,7 @@ export const FETCH_POSTS_QUERY = gql`
       likeCount
       imageUrl
       likes {
-        likedBy
+        username
         createdAt
       }
       commentCount
@@ -74,7 +74,7 @@ export const FETCH_DRAFTS_QUERY = gql`
       imageUrl
       likeCount
       likes {
-        likedBy
+        username
         createdAt
       }
       commentCount
@@ -99,7 +99,7 @@ export const GET_POST_TO_EDIT_BY_ID_QUERY = gql`
       likeCount
       imageUrl
       likes {
-        likedBy
+        username
         createdAt
       }
       commentCount
@@ -113,7 +113,10 @@ export const GET_POST_TO_EDIT_BY_ID_QUERY = gql`
 `
 export const PUBLISH_POST = gql`
   mutation publishPost($postId: ID!) {
-    publishPost(postId: $postId)
+    publishPost(postId: $postId) {
+      id
+      published
+    }
   }
 `
 export const DELETE_POST_MUTATION = gql`
@@ -124,12 +127,32 @@ export const DELETE_POST_MUTATION = gql`
 
 export const EDIT_POST_MUTATION = gql`
   mutation EditPost($input: PostAndImageUpdate) {
-    editPost(input: $input)
+    editPost(input: $input) {
+      title
+      content
+      imageUrl
+      name
+    }
   }
 `
 
 export const CREATE_IMAGE_POST = gql`
   mutation CreatePostandImage($input: CreatePostandImage) {
-    createPostandImage(input: $input)
+    createPostandImage(input: $input) {
+      id
+      title
+    }
+  }
+`
+export const LIKE_POST_MUTATION = gql`
+  mutation likePost($postId: ID!) {
+    likePost(postId: $postId) {
+      id
+      likes {
+        id
+        username
+      }
+      likeCount
+    }
   }
 `

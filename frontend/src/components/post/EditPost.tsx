@@ -1,13 +1,14 @@
-import { useMutation } from '@apollo/client'
+import { gql, useMutation } from '@apollo/client'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { UpdatePostAndImageFormValues } from '../../additional'
-import { EDIT_POST_MUTATION } from '../../utils/hooks/graphql'
+import { EDIT_POST_MUTATION, FETCH_POSTS_QUERY } from '../../utils/hooks/graphql'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
 
-export default function EditPost({ data }: any) {
+export default function EditPost ({ data }: any)
+{
     let navigate = useNavigate()
     const {
 
@@ -26,9 +27,7 @@ export default function EditPost({ data }: any) {
     const [postAndImageUpdate, { loading, error }] = useMutation(
         EDIT_POST_MUTATION,
         {
-            update() {
-                navigate('/')
-            },
+
             variables: {
                 input: {
                     postId: id,
@@ -37,14 +36,38 @@ export default function EditPost({ data }: any) {
                     content: formData.content,
                     name: formData.name
                 }
+            },
+            update (cache, { data: { postAndImageUpdate } })
+            {
+                navigate('/')
+                cache.modify({
+                    fields: {
+                        getPosts (allPosts = [])
+                        {
+                            const newerPost = cache.writeFragment({
+                                data: postAndImageUpdate,
+                                fragment: gql`
+                    fragment newerPost on Post {
+                  id
+                  type
+                }
+              `
+                            });
+                            return [...allPosts, newerPost]
+                        }
+                    }
+
+                })
             }
         }
     )
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
+    {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
-    const handlePictureChange = (event: BaseSyntheticEvent) => {
+    const handlePictureChange = (event: BaseSyntheticEvent) =>
+    {
         setFormData({ ...formData, [event.target.name]: event.target.files[0] })
     }
     const onSubmit: SubmitHandler<UpdatePostAndImageFormValues> = (
@@ -54,43 +77,43 @@ export default function EditPost({ data }: any) {
             <Form
                 buttonLabel='Submit'
 
-                onSubmit={onSubmit}
+                onSubmit={ onSubmit }
                 className='post-create-edit-form'
             >
                 <FormInput
                     name='title'
                     type='text'
                     placeholder='Enter a Title'
-                    error={errors.title?.message}
-                    onChange={handleInputChange}
+                    error={ errors.title?.message }
+                    onChange={ handleInputChange }
                     autoFocus
                 />
                 <FormInput
                     name='content'
                     type='text'
                     placeholder='Enter some Content'
-                    onChange={handleInputChange}
-                    error={errors.content?.message}
+                    onChange={ handleInputChange }
+                    error={ errors.content?.message }
                 />
 
                 <FormInput
                     name='name'
                     type='text'
                     placeholder='Enter a name for the image'
-                    onChange={handleInputChange}
-                    error={errors.content?.message}
+                    onChange={ handleInputChange }
+                    error={ errors.content?.message }
                 />
                 <FormInput
                     accept='image/*'
                     type='file'
                     name='picture'
                     id='file-uploader'
-                    onChange={handlePictureChange}
+                    onChange={ handlePictureChange }
                 />
             </Form>
             <ul>
 
-                <li>{title}</li>
+                <li>{ title }</li>
             </ul>
         </div>)
 }

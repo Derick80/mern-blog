@@ -43,7 +43,7 @@ const typeDefs = gql`
   type Like {
     id: ID!
     createdAt: String!
-    likedBy: String!
+    username: String
   }
   type Comment {
     id: ID!
@@ -117,13 +117,13 @@ const typeDefs = gql`
     content: String
   }
   type Mutation {
-    createGalleryEntry(input: CreateGalleryEntry!): Boolean
-    createPostandImage(input: CreatePostandImage): Boolean
-    editPost(input: PostAndImageUpdate): Boolean!
+    createGalleryEntry(input: CreateGalleryEntry!): Post!
+    createPostandImage(input: CreatePostandImage): Post!
+    editPost(input: PostAndImageUpdate): Post!
     register(registerInput: RegisterInput!): User!
     login(username: String!, password: String!): User!
     createPost(postInput: PostInput!): Post!
-    publishPost(postId: ID!): String!
+    publishPost(postId: ID!): Post
     deletePost(postId: ID!): String!
     createComment(postId: String!, content: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!

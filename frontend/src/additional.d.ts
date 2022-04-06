@@ -5,6 +5,12 @@ export interface PostFeedProps {
   username: string
   imageUrl: string
   author: string
+  likes: {
+    username: string
+    createdAt: string
+  }
+  likeCount: number
+  published: boolean
 }
 export interface SinglePostProps {
   postId: string

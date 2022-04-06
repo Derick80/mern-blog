@@ -94,19 +94,19 @@ module.exports = {
             imageUserName: user.username,
             name
           })
-          const postA = await updatePost.save()
-          console.log('first try', postA)
+          const post = await updatePost.save()
+          console.log('first try', post)
 
-          return true
+          return post
         } else {
           const updatePost = await Post.findByIdAndUpdate(postId, {
             title,
             content,
             name
           })
-          const postB = await updatePost.save()
-          console.log('2nd try', postB)
-          return true
+          const post = await updatePost.save()
+          console.log('2nd try', post)
+          return post
         }
       } catch (error) {
         throw new Error('unable to save')
@@ -124,23 +124,23 @@ module.exports = {
 
       const post = await updatePost.save()
 
-      return true
+      return post
     },
     likePost: async (_: any, { postId }: any, context: any) => {
       const { user } = checkAuth(context)
-      console.log(user.username)
+      console.log('username', user.username)
       const post = await Post.findById(postId)
       if (post) {
-        if (post.likes.find((like: any) => like.likedBy === user.username)) {
-          //Post already liked, soi
+        if (post.likes.find((like: any) => like.username === user.username)) {
+          //Post already liked, so unlike it
           post.likes = post.likes.filter(
-            (like: any) => like.likedBy !== user.username
+            (like: any) => like.username !== user.username
           )
         } else {
           //Post not liked , like post
 
           post.likes.push({
-            likedBy: user.username,
+            username: user.username,
             createdAt: new Date().toISOString()
           })
         }
@@ -170,7 +170,7 @@ module.exports = {
         })
         const postAndImage = await newPostandImage.save()
         console.log('postandImage', postAndImage)
-        return true
+        return postAndImage
       } catch (error) {
         throw new Error('unable to save')
       }
