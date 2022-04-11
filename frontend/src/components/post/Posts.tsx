@@ -8,10 +8,9 @@ import LikeButton from "../LikeButton";
 import PublishButton from "../PublishButton";
 import ShowButton from "../ShowMore"
 
-const Posts = ({ id, title, content, username, imageUrl, author, likes, likeCount, published }: PostFeedProps) =>
-{
-    const { user } = useContext(AuthContext) as IAuth;
-    console.log("posts user", user.username);
+const Posts = ({ id, title, content, username, imageUrl, author, likes, likeCount, published }: PostFeedProps) => {
+    const { user } = useContext(AuthContext)
+    // console.log("posts user", user?.username);
     return (
 
         <div className="card-container">
@@ -46,8 +45,7 @@ const Posts = ({ id, title, content, username, imageUrl, author, likes, likeCoun
     )
 }
 
-function PostList (posts: PostFeedProps)
-{
+function PostList (posts: PostFeedProps) {
     const { id,
         title,
         content,
