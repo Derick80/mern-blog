@@ -2,14 +2,17 @@ import { gql, useMutation } from '@apollo/client'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { CreatePostFormValues } from '../../additional'
-import { CREATE_IMAGE_POST } from '../../utils/hooks/graphql'
-import Form from '../common/form/Form'
-import PostFormInput from '../common/form/FormInput'
+import { CreatePostFormValues } from '../../../additional'
+import { CREATE_COMMENT_MUTATION } from '../../../utils/hooks/graphql'
+import Form from '../../common/form/Form'
+import PostFormInput from '../../common/form/FormInput'
 
 
+export interface CreateCommentProps {
+    postId: string
+}
 
-export default function CreatePost (
+export default function CreateComment ({ postId }: CreateCommentProps,
 
     initialState: Partial<CreatePostFormValues>
 ) {
@@ -19,29 +22,30 @@ export default function CreatePost (
         formState: { errors }
     } = useForm()
     const [formData, setFormData] = useState({
-        picture: null,
-        title: '',
+        name: '',
+
         content: '',
-        name: ''
+
     })
 
-    const [createPostAndImage, { loading, error }] = useMutation(
-        CREATE_IMAGE_POST,
+    const [createComment, { loading, error }] = useMutation(
+        CREATE_COMMENT_MUTATION,
         {
             variables: {
-                input: {
-                    picture: formData.picture,
-                    title: formData.title,
-                    content: formData.content,
-                    name: formData.name
-                }
-            }, update (cache, { data: { createPostAndImage } }) {
-                navigate('/drafts')
+
+                postId,
+
+
+                content: formData.content,
+
+
+            }, update (cache, { data: { createComment } }) {
+
                 cache.modify({
                     fields: {
-                        getDraftPosts (existingDrafts = []) {
-                            const newDraftRef = cache.writeFragment({
-                                data: createPostAndImage,
+                        getComments (existingComments = []) {
+                            const newComments = cache.writeFragment({
+                                data: createComment,
                                 fragment: gql`
                     fragment newDraft on Post {
                   id
@@ -49,7 +53,7 @@ export default function CreatePost (
                 }
               `
                             });
-                            return [...existingDrafts, newDraftRef]
+                            return [...existingComments, newComments]
                         }
                     }
 
@@ -60,12 +64,10 @@ export default function CreatePost (
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
-    const handlePictureChange = (event: BaseSyntheticEvent) => {
-        setFormData({ ...formData, [event.target.name]: event.target.files[0] })
-    }
+
     const onSubmit: SubmitHandler<CreatePostFormValues> = (
         input: CreatePostFormValues
-    ) => createPostAndImage()
+    ) => createComment()
 
     return (
         <Form
@@ -74,14 +76,7 @@ export default function CreatePost (
             onSubmit={ onSubmit }
             className='post-create-edit-form'
         >
-            <PostFormInput
-                name='title'
-                type='text'
-                placeholder='Enter a Title'
-                error={ errors.title?.message }
-                onChange={ handleInputChange }
-                autoFocus
-            />
+
             <PostFormInput
                 name='content'
                 type='text'
@@ -89,13 +84,7 @@ export default function CreatePost (
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
             />
-            <PostFormInput
-                accept='image/*'
-                type='file'
-                name='picture'
-                id='file-uploader'
-                onChange={ handlePictureChange }
-            />
+
             <PostFormInput
                 name='name'
                 type='text'

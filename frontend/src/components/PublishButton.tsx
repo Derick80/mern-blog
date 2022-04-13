@@ -5,13 +5,11 @@ import { FETCH_POSTS_QUERY, PUBLISH_POST } from '../utils/hooks/graphql'
 import Button from './common/Button'
 
 
-export interface PublishButtonProps
-{
+export interface PublishButtonProps {
     postId: string
 }
 
-export default function PublishButton ({ postId }: PublishButtonProps)
-{
+export default function PublishButton ({ postId }: PublishButtonProps) {
     let navigate = useNavigate()
 
 
@@ -19,13 +17,12 @@ export default function PublishButton ({ postId }: PublishButtonProps)
         variables: {
             postId
         },
-        update (cache, { data: { publishPost } })
-        {
+        fetchPolicy: 'network-only',
+        update (cache, { data: { publishPost } }) {
             navigate('/')
             cache.modify({
                 fields: {
-                    getPosts (existingPosts = [])
-                    {
+                    getPosts (existingPosts = []) {
                         const newPost = cache.writeFragment({
                             data: publishPost,
                             fragment: gql`

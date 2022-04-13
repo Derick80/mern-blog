@@ -8,14 +8,15 @@ import EditPost from '../components/post/EditPost';
 export interface EditPostProps {
     postId: string
 }
-export default function Edit() {
+export default function Edit () {
     const { user } = useContext(AuthContext);
     let { postId } = useParams()
     const { data, loading, error } = useQuery(GET_POST_TO_EDIT_BY_ID_QUERY, {
-        variables: { postId }
+        variables: { postId },
+        fetchPolicy: 'network-only'
     })
 
-    return data ? <EditPost data={data} /> : <div>loading...</div>
+    return data ? <EditPost data={ data } /> : <div>loading...</div>
 
 
 }

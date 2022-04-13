@@ -49,11 +49,13 @@ export const FETCH_POSTS_QUERY = gql`
       likeCount
       imageUrl
       likes {
+        id
         username
         createdAt
       }
       commentCount
       comments {
+        id
         content
         username
         createdAt
@@ -153,6 +155,18 @@ export const LIKE_POST_MUTATION = gql`
         username
       }
       likeCount
+    }
+  }
+`
+export const CREATE_COMMENT_MUTATION = gql`
+  mutation ($postId: ID!, $content: String!) {
+    createComment(postId: $postId, content: $content) {
+      id
+      content
+      comments {
+        id
+        username
+      }
     }
   }
 `

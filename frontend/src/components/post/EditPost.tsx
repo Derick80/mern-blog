@@ -7,8 +7,7 @@ import { EDIT_POST_MUTATION, FETCH_POSTS_QUERY } from '../../utils/hooks/graphql
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
 
-export default function EditPost ({ data }: any)
-{
+export default function EditPost ({ data }: any) {
     let navigate = useNavigate()
     const {
 
@@ -37,13 +36,12 @@ export default function EditPost ({ data }: any)
                     name: formData.name
                 }
             },
-            update (cache, { data: { postAndImageUpdate } })
-            {
+            fetchPolicy: 'network-only',
+            update (cache, { data: { postAndImageUpdate } }) {
                 navigate('/')
                 cache.modify({
                     fields: {
-                        getPosts (allPosts = [])
-                        {
+                        getPosts (allPosts = []) {
                             const newerPost = cache.writeFragment({
                                 data: postAndImageUpdate,
                                 fragment: gql`
@@ -62,12 +60,10 @@ export default function EditPost ({ data }: any)
         }
     )
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-    {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [event.target.name]: event.target.value })
     }
-    const handlePictureChange = (event: BaseSyntheticEvent) =>
-    {
+    const handlePictureChange = (event: BaseSyntheticEvent) => {
         setFormData({ ...formData, [event.target.name]: event.target.files[0] })
     }
     const onSubmit: SubmitHandler<UpdatePostAndImageFormValues> = (

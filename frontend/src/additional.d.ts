@@ -11,9 +11,21 @@ export interface PostFeedProps {
   }
   likeCount: number
   published: boolean
+  commentCount: number
+
+  comments: [CommentProps]
 }
 export interface SinglePostProps {
   postId: string
+}
+
+export interface CommentProps {
+  comments: {
+    id: string
+    username: string
+    content: string
+    createdAt: string
+  }
 }
 export interface IAuth {
   login: () => void
@@ -22,10 +34,10 @@ export interface IAuth {
 }
 
 export interface CreatePostFormValues {
-  picture: null
-  title: string
-  content: string
-  name: string
+  picture?: null
+  title?: string
+  content?: string
+  name?: string
 }
 
 export interface UpdatePostAndImageFormValues {

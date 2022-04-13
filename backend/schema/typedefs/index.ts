@@ -37,8 +37,8 @@ const typeDefs = gql`
     likeCount: Int!
     comments: [Comment]
     commentCount: Int
-    imageUserId: String!
-    imageUserName: String!
+    imageUserId: String
+    imageUserName: String
   }
   type Like {
     id: ID!
@@ -48,7 +48,7 @@ const typeDefs = gql`
   type Comment {
     id: ID!
     createdAt: String!
-    username: String!
+    username: String
     content: String!
   }
   type Gallery {
@@ -125,7 +125,7 @@ const typeDefs = gql`
     createPost(postInput: PostInput!): Post!
     publishPost(postId: ID!): Post
     deletePost(postId: ID!): String!
-    createComment(postId: String!, content: String!): Post!
+    createComment(postId: ID!, content: String!): Post
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
   }

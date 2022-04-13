@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     defaultValue?: any
     ref?: any
 }
-export default function FormInput({
+export default function FormInput ({
     register,
     name,
     error,
@@ -23,14 +23,14 @@ export default function FormInput({
     ...rest
 }: InputProps) {
     return (
-        <div className={wrapperClass}>
-            {label && <label htmlFor={name}>{label}</label>}
+        <div className={ wrapperClass }>
+            { label && <label htmlFor={ name }>{ label }</label> }
             <input
-                aria-invalid={error ? "true" : "false"}
-                {...register(name)}
-                {...rest}
+                aria-invalid={ error ? "true" : "false" }
+                { ...register(name) }
+                { ...rest }
             />
-            {error && <span role="alert">{error}</span>}
+            { error && <span role="alert">{ error }</span> }
         </div>
     )
 }
