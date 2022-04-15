@@ -6,13 +6,16 @@ interface Props {
     onChange?: () => void
     className?: string
     id?: string
+    role?: string
+
+    type?: string
 
 }
 
-export default function Button({ onClick, className, children, ...props }: Props) {
+export default function Button ({ onClick, className, children, ...props }: Props) {
     return (
-        <button className={className} onClick={onClick}>
-            {children}
+        <button className={ className } onClick={ onClick }>
+            { children }
 
         </button>
     )

@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@types/apollo-upload-client": "^17.0.0",
-    "@types/jwt-decode": "^3.1.0"
+    "@types/jwt-decode": "^3.1.0",
+    "react-icons": "^4.3.1"
   }
 }

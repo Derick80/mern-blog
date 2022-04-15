@@ -6,26 +6,32 @@ export interface PostFeedProps {
   imageUrl: string
   author: string
   likes: {
-    username: string
-    createdAt: string
+    username?: string
+    createdAt?: string
   }
   likeCount: number
   published: boolean
   commentCount: number
 
-  comments: [CommentProps]
-}
-export interface SinglePostProps {
-  postId: string
-}
-
-export interface CommentProps {
   comments: {
     id: string
     username: string
     content: string
     createdAt: string
   }
+}
+export interface SinglePostProps {
+  postId: string
+}
+
+export interface LikeProps {
+  likes: { username?: string; createdAt?: string }
+}
+export interface CommentProps {
+  id: string
+  username: string
+  content: string
+  createdAt: string
 }
 export interface IAuth {
   login: () => void
