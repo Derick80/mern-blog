@@ -1,30 +1,23 @@
 import { CommentProps, PostFeedProps } from '../../../additional'
-
-export type CommentContentProps = {
-    post?: PostFeedProps
-    comment: {
-        id: string
-        username: string
-        createdAt: string
-        content: string
-    }
-}
+import { PostContentProps } from '../PostContent'
 
 
-const CommentCard = ({ comment }: CommentContentProps) => {
-    return (
-        <div className="card" key={ comment.id }>
-            <div className="card-header">
-                { comment.username }
-                { comment.createdAt }
-            </div>
-            <div className="card-content">
-                { comment.content }
-            </div>
 
+const CommentCard = (comments: any) => (
+    <>
+        { comments.map((item: any) => {
+            return (
 
-        </div>
-    )
-}
+                <ul className="comments-ul" key={ item.id }>
+
+                    <li>                { item.username }
+                    </li>
+                    <li>{ item.content }</li>
+                </ul>
+
+            )
+        }) }
+    </>
+)
 
 export default CommentCard

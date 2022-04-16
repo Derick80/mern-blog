@@ -19,7 +19,7 @@ export default function Dashboard () {
         <>
             <div className="primary-content">
                 { data.getPosts.map((post: any) => {
-                    return <PostContent key={ post.id } { ...post } />
+                    return <PostContent key={ post.id } comments={ post.comments } { ...post } />
                 }) }
             </div>
 

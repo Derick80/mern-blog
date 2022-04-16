@@ -13,12 +13,7 @@ export interface PostFeedProps {
   published: boolean
   commentCount: number
 
-  comments: {
-    id: string
-    username: string
-    content: string
-    createdAt: string
-  }
+  comments: Array
 }
 export interface SinglePostProps {
   postId: string

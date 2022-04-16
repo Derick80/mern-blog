@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PostFeedProps } from '../../additional'
+import { CommentProps, PostFeedProps } from '../../additional'
 import { AuthContext } from '../../utils/context/auth'
 import Button from '../common/Button'
 import LikeButton from '../LikeButton'
@@ -8,8 +8,8 @@ import CommentCard from './comment/CommentContent'
 import CommentBox from './comment/LeaveCommentBox'
 
 export type PostContentProps = {
-    post: PostFeedProps[]
-
+    post: PostFeedProps
+    comments: PostFeedProps
 }
 
 const PostContent = (post: PostFeedProps) => {
@@ -29,6 +29,7 @@ export type CardProps = {
     id?: string
     post: PostFeedProps
     user?: string
+
 }
 
 const Card = ({ post,
@@ -36,16 +37,16 @@ const Card = ({ post,
     className,
     children,
 
+
     ...props
 }: CardProps) => {
     const { user } = useContext(AuthContext)
-
     return (
         <div className='card-container'>
             <div className='card'>
 
                 <div className='card-header'>
-                    {/* <img src={ post.imageUrl } alt='bleh' /> */ }
+                    { <img src={ post.imageUrl } alt='bleh' /> }
                     { post.title }
                 </div>
                 <div className='card-body'>
@@ -54,19 +55,30 @@ const Card = ({ post,
                     </div>
                 </div>
                 <div className="card-stats">
-                    <Button className="btn" >
+                    <div className="card-stats-left">
+
+                        <LikeButton user={ user } post={ post }
+                        />
+                    </div>
+
+                    <div className="card-stats-right">
                         <span className="material-icons">forum</span>&nbsp;{ post.commentCount }
 
-                    </Button>
+                    </div>
+
+
 
                 </div>
-                <div className='card-actions'>
-                    <LikeButton user={ user } post={ post }
-                    />
 
-                    <CommentCard comment={ post.comments } />
-                    <CommentBox postId={ post.id } />
+                <div>
+                    { post.comments.map((comment: any) => {
+                        return (<ul key={ comment.id }>
+                            <li>{ comment.content }</li>
+                        </ul>)
+                    }) }
                 </div>
+
+
 
 
             </div>

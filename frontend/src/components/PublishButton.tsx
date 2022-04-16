@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FETCH_POSTS_QUERY, PUBLISH_POST } from '../utils/hooks/graphql'
+import { PUBLISH_POST } from '../utils/hooks/graphql'
 import Button from './common/Button'
 
 

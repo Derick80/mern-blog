@@ -5,7 +5,8 @@ import { DELETE_POST_MUTATION, FETCH_DRAFTS_QUERY } from '../utils/hooks/graphql
 import Button from './common/Button'
 
 export interface DeleteButtonProps {
-    postId: string
+    postId?: string
+    commentId?: string
 }
 
 
