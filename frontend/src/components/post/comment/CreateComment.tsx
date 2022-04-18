@@ -74,7 +74,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             buttonLabel='Submit'
 
             onSubmit={ onSubmit }
-            className='post-create-edit-form'
+            className='create-comment-form'
         >
 
             <PostFormInput
@@ -88,6 +88,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             <PostFormInput
                 name='name'
                 type='text'
+                hidden
                 placeholder='Enter a name for the image'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }

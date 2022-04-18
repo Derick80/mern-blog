@@ -210,10 +210,7 @@ nav li a {
   margin: 0px 0px;
 }
 
-.comment_input {
-  display: flex;
-  max-width: max-content;
-}
+
 
 .card-footer {
   display: flex;
@@ -353,6 +350,7 @@ nav li a {
   }
 .card-content{
 }
+
   .card-stats {
     display: flex;
     padding: 12px;
@@ -360,9 +358,7 @@ nav li a {
 justify-content: space-between;
   }
 
-ul .comments-ul{
-  color:black;
-}
+
 
 
 
@@ -388,6 +384,34 @@ ul .comments-ul{
   grid-row: 3;
 }
 
+.comment-info{
+   display: flex;
+      padding: 12px;
+   justify-content: space-between;
+ }
+
+ .comment-container{
+   display: flex;
+   flex-direction: column;
+      padding: 12px;
+    margin: 10px 0px;
+    border: 1px solid black;
+
+ }
+ .comment-item {
+   display: flex;
+   flex-direction: column;
+   border: 1px solid black;
+ }
+  .comment-info {
+    display: flex;
+    flex-direction: row;
+
+  }
+  .create-comment-form{
+    display: flex;
+    flex-direction: row;
+  }
 /* #startregion large-media */
 @media (min-width: 50em) {
   :root {

@@ -15,7 +15,7 @@ type FormProps = {
     register?: any;
     className?: string;
     formData?: any,
-    name?: any
+    name?: string;
     handleInputChange?: any
     handlePictureChange?: any
     initialValues?: any
@@ -23,13 +23,13 @@ type FormProps = {
 
 }
 
-export default function Form({ defaultValues, children, onSubmit, buttonLabel, formData, name, className, initialValues, ...rest }: FormProps) {
+export default function Form ({ defaultValues, children, onSubmit, buttonLabel, formData, name, className, initialValues, ...rest }: FormProps) {
     const { register, handleSubmit } = useForm<CreatePostFormValues>()
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} {...rest}>
-            <div className={className}>
-                {Array.isArray(children)
+        <form onSubmit={ handleSubmit(onSubmit) } { ...rest }>
+            <div className={ className }>
+                { Array.isArray(children)
                     ? children.map((child) => {
                         return child.props.name
                             ? createElement(child.type, {
@@ -41,9 +41,9 @@ export default function Form({ defaultValues, children, onSubmit, buttonLabel, f
                             })
                             : child;
                     })
-                    : children}
+                    : children }
             </div>
-            <Button className="btn btn--brand">{buttonLabel}</Button>
+            <Button className="btn btn--brand">{ buttonLabel }</Button>
         </form>
     )
 }

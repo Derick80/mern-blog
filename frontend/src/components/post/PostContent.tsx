@@ -6,7 +6,8 @@ import LikeButton from '../LikeButton'
 import ShowButton from '../ShowMore'
 import CommentCard from './comment/CommentContent'
 import CommentBox from './comment/LeaveCommentBox'
-
+import Comment from '../common/Comment'
+import CreateComment from './comment/CreateComment'
 export type PostContentProps = {
     post: PostFeedProps
     comments: PostFeedProps
@@ -69,18 +70,25 @@ const Card = ({ post,
 
 
                 </div>
+                <div className="comment-container">
+                    <div className="comment-info">
 
-                <div>
-                    { post.comments.map((comment: any) => {
-                        return (<ul key={ comment.id }>
-                            <li>{ comment.content }</li>
-                        </ul>)
-                    }) }
+                        <p>View all { post.commentCount }</p>
+                        <span className="material-icons">expand_more</span>
+                    </div>
+                    <div className="comment-accordian">
+
+                        { post.comments.map((comment: any) => {
+
+                            return (<>
+                                <Comment key={ comment.id } comment={ comment } />
+                            </>)
+                        }) }
+
+                    </div>
+                    <CreateComment postId={ post.id } />
+
                 </div>
-
-
-
-
             </div>
         </div>
     )
