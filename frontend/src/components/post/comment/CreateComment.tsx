@@ -71,7 +71,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
 
     return (
         <Form
-            buttonLabel='Submit'
+            buttonLabel='Post a Comment'
 
             onSubmit={ onSubmit }
             className='create-comment-form'
@@ -80,7 +80,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             <PostFormInput
                 name='content'
                 type='text'
-                placeholder='Enter some Content'
+                placeholder='Add a comment...'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
             />

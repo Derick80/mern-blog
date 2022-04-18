@@ -27,8 +27,8 @@ export default function Form ({ defaultValues, children, onSubmit, buttonLabel, 
     const { register, handleSubmit } = useForm<CreatePostFormValues>()
 
     return (
-        <form onSubmit={ handleSubmit(onSubmit) } { ...rest }>
-            <div className={ className }>
+        <form className={ className } onSubmit={ handleSubmit(onSubmit) } { ...rest }>
+            <div>
                 { Array.isArray(children)
                     ? children.map((child) => {
                         return child.props.name
@@ -43,7 +43,7 @@ export default function Form ({ defaultValues, children, onSubmit, buttonLabel, 
                     })
                     : children }
             </div>
-            <Button className="btn btn--brand">{ buttonLabel }</Button>
+            <Button >{ buttonLabel }</Button>
         </form>
     )
 }

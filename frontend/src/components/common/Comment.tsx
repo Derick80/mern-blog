@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 export type CommentProps = {
@@ -11,7 +11,7 @@ export type CommentProps = {
 
 }
 export default function Comment ({ comment }: CommentProps) {
-
+    const [allComments, setAllComment] = useState(false)
     return (
         <>
             <div className='comment-item' key={ comment.id }>

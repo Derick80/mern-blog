@@ -1,11 +1,8 @@
 import { useContext } from 'react'
 import { CommentProps, PostFeedProps } from '../../additional'
 import { AuthContext } from '../../utils/context/auth'
-import Button from '../common/Button'
 import LikeButton from '../LikeButton'
 import ShowButton from '../ShowMore'
-import CommentCard from './comment/CommentContent'
-import CommentBox from './comment/LeaveCommentBox'
 import Comment from '../common/Comment'
 import CreateComment from './comment/CreateComment'
 export type PostContentProps = {
@@ -86,9 +83,10 @@ const Card = ({ post,
                         }) }
 
                     </div>
-                    <CreateComment postId={ post.id } />
+
 
                 </div>
+                <CreateComment postId={ post.id } />
             </div>
         </div>
     )
