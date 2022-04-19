@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../utils/context/auth'
 import { useContext } from 'react'
 
-function Header() {
+function Header () {
     const { user, logout } = useContext(AuthContext)
 
     const headerBar = user ? (
@@ -22,11 +22,11 @@ function Header() {
             </ul>
             <ul className='right-nav-ul'>
                 <li className='right-li'>
-                    <NavLink to='/profile'>Acount</NavLink>
+                    <NavLink to='/Profile'>Profile</NavLink>
                 </li>
 
                 <li className='right-li'>
-                    <button onClick={logout}>logout</button>
+                    <button onClick={ logout }>logout</button>
                 </li>
             </ul>
         </nav>
