@@ -1,3 +1,4 @@
+import { formatDistance } from 'date-fns';
 import React, { useState } from 'react'
 
 
@@ -20,6 +21,8 @@ export default function Comment ({ comment }: CommentProps) {
                 </div>
                 <div className="comment-info">
                     <p>Posted by{ comment.username } </p>
+
+                    <p>{ formatDistance(new Date(comment.createdAt), new Date(), { addSuffix: true }) }</p>
                 </div>
             </div>
 

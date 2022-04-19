@@ -5,6 +5,7 @@ export interface PostFeedProps {
   username: string
   imageUrl: string
   author: string
+  createdAt: string
   likes: {
     username?: string
     createdAt?: string

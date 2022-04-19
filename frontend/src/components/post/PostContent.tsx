@@ -5,6 +5,8 @@ import LikeButton from '../LikeButton'
 import ShowButton from '../ShowMore'
 import Comment from '../common/Comment'
 import CreateComment from './comment/CreateComment'
+import { formatDistance } from 'date-fns'
+import CommentBox from '../common/CommentBox'
 export type PostContentProps = {
     post: PostFeedProps
     comments: PostFeedProps
@@ -45,11 +47,15 @@ const Card = ({ post,
 
                 <div className='card-header'>
                     { <img src={ post.imageUrl } alt='bleh' /> }
-                    { post.title }
+
+                </div>
+                <div className="card-info">
+                    <h5> { post.title }</h5>
+                    <p>{ formatDistance(new Date(post.createdAt), new Date(), { addSuffix: true }) }</p>
                 </div>
                 <div className='card-body'>
                     <div className='card-content'>
-                        <ShowButton content={ post.content } />
+                        <ShowButton className="btn-show" content={ post.content } />
                     </div>
                 </div>
                 <div className="card-stats">
@@ -68,25 +74,12 @@ const Card = ({ post,
 
                 </div>
                 <div className="comment-container">
-                    <div className="comment-info">
 
-                        <p>View all { post.commentCount }</p>
-                        <span className="material-icons">expand_more</span>
-                    </div>
-                    <div className="comment-accordian">
-
-                        { post.comments.map((comment: any) => {
-
-                            return (<>
-                                <Comment key={ comment.id } comment={ comment } />
-                            </>)
-                        }) }
-
-                    </div>
-
+                    <CommentBox key={ post.comments.id } comment={ post.comments } commentCount={ post.commentCount } />
+                    <CreateComment postId={ post.id } />
 
                 </div>
-                <CreateComment postId={ post.id } />
+
             </div>
         </div>
     )
