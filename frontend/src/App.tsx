@@ -15,6 +15,7 @@ import Drafts from "./pages/Drafts";
 import CreatePost from "./pages/Create";
 import Edit from "./pages/Edit";
 import Create from "./pages/Create";
+import Profile from './pages/Profile';
 
 
 function App () {
@@ -29,6 +30,7 @@ function App () {
             <Route path="/login" element={ <Login /> } />
             <Route path="/register" element={ <Register /> } />
             <Route path="/createpost" element={ <CreatePost /> } />
+            <Route path="/profile" element={ <Profile /> } />
             <Route path="/drafts" element={ <Drafts /> } />
             <Route path="/editpost/:postId" element={ <Edit /> } />
 

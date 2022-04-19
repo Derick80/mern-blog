@@ -1,6 +1,7 @@
 const usersResolver = require('./users')
 const postsResolver = require('./posts')
 const commentsResolver = require('./comments')
+const profilesResolver = require('./profiles')
 
 module.exports = {
   Post: {
@@ -8,15 +9,18 @@ module.exports = {
     commentCount: (parent: any) => parent.comments.length
   },
   Upload: {
-    ...postsResolver.Upload
+    ...postsResolver.Upload,
+    ...profilesResolver.Upload
   },
   Query: {
     ...usersResolver.Query,
-    ...postsResolver.Query
+    ...postsResolver.Query,
+    ...profilesResolver.Query
   },
   Mutation: {
     ...usersResolver.Mutation,
     ...postsResolver.Mutation,
-    ...commentsResolver.Mutation
+    ...commentsResolver.Mutation,
+    ...profilesResolver.Mutation
   }
 }

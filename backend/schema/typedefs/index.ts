@@ -51,6 +51,18 @@ const typeDefs = gql`
     username: String
     content: String!
   }
+  type Profile {
+    id: ID!
+    createdAt: String!
+    location: String!
+    aboutMe: String!
+    avatarUrl: String!
+    nickName: String!
+    username: String!
+    email: String!
+    userId: ID!
+    name: String!
+  }
   type Gallery {
     id: ID!
     createdAt: String!
@@ -73,6 +85,8 @@ const typeDefs = gql`
     uploads: [File]
     getUserImageGallery: [Gallery]
     imageUploads: [Gallery]
+    getProfiles: [Profile]
+    getUserProfile: [Profile]
   }
   input RegisterInput {
     username: String!
@@ -116,6 +130,31 @@ const typeDefs = gql`
     title: String
     content: String
   }
+  input CreateProfileandImage {
+    picture: Upload!
+    name: String!
+    location: String
+    aboutMe: String
+    nickName: String
+    avatarUrl: String
+    createdAt: String
+  }
+  input UpdateProfileAndImage {
+    profileId: String!
+    picture: Upload!
+    name: String
+    location: String
+    aboutMe: String
+    nickName: String
+    avatarUrl: String
+  }
+  input ProfileInput {
+    location: String
+    aboutMe: String
+    nickName: String
+    avatarUrl: String
+  }
+
   type Mutation {
     createGalleryEntry(input: CreateGalleryEntry!): Post!
     createPostandImage(input: CreatePostandImage): Post!
@@ -128,6 +167,9 @@ const typeDefs = gql`
     createComment(postId: ID!, content: String!): Post
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
+    createProfile(profileInput: ProfileInput!): Profile
+    createProfileandImage(input: CreateProfileandImage): Profile
+    editUserProfile(input: UpdateProfileAndImage): Profile
   }
 `
 module.exports = typeDefs

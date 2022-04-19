@@ -2,11 +2,11 @@ import { useReducer, createContext } from 'react'
 import jwtDecode from 'jwt-decode'
 
 export interface UserData {
-  user: string | null
+  user: null
   token: string | null
 }
 export interface IState {
-  user: string | null
+  user: null
 
   login: (UserData: UserData) => void
   logout: () => void

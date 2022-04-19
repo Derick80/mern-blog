@@ -3,10 +3,13 @@ import { CommentProps, PostFeedProps } from '../../additional'
 import { AuthContext } from '../../utils/context/auth'
 import LikeButton from '../LikeButton'
 import ShowButton from '../ShowMore'
+import DeleteButton from '../DeleteButton'
+import EditButton from '../EditButton'
 import Comment from '../common/Comment'
 import CreateComment from './comment/CreateComment'
 import { formatDistance } from 'date-fns'
 import CommentBox from '../common/CommentBox'
+import { DELETE_POST_MUTATION } from '../../utils/hooks/graphql'
 export type PostContentProps = {
     post: PostFeedProps
     comments: PostFeedProps
@@ -28,7 +31,7 @@ export type CardProps = {
     className?: string
     id?: string
     post: PostFeedProps
-    user?: string
+
 
 }
 
@@ -38,9 +41,10 @@ const Card = ({ post,
     children,
 
 
-    ...props
 }: CardProps) => {
-    const { user } = useContext(AuthContext)
+    const { user }: any = useContext(AuthContext)
+    console.log(user);
+
     return (
         <div className='card-container'>
             <div className='card'>
@@ -80,6 +84,14 @@ const Card = ({ post,
 
                 </div>
 
+                <div className="card-footer">
+
+                    { user && user.username === post.username && <>
+                        <DeleteButton postId={ post.id } />
+                        <EditButton postId={ post.id } />
+
+                    </> }
+                </div>
             </div>
         </div>
     )

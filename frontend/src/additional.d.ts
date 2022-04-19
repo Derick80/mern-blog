@@ -1,3 +1,9 @@
+export interface User {
+  username?: string
+  id?: string
+  email?: string
+}
+
 export interface PostFeedProps {
   id: string
   title: string
@@ -74,3 +80,33 @@ export type UseFormProps<
   shouldUnregister: boolean
   criteriaMode: 'firstError' | 'all'
 }>
+
+export interface ProfileProps {
+  name: string
+  id: string
+  avatarUrl: string
+  createdAt: string
+  username: string
+  nickName: string
+  email: string
+  location: string
+  userId: string
+  aboutMe: string
+}
+
+export interface CreateProfileFormValues {
+  picture?: null
+  nickName?: string
+
+  location?: string
+  aboutMe?: string
+  name?: string
+}
+
+export interface UpdateProfileFormValues {
+  profileId?: string
+  picture?: null
+  nickName?: string
+  location?: string
+  name?: string
+}

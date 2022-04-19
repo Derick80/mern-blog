@@ -6,10 +6,11 @@ import Button from './common/Button'
 
 
 export interface EditButtonProps {
-    postId: string
+    postId?: string
+    profileId?: string
 }
 
-export default function EditButton({ postId }: EditButtonProps) {
+export default function EditButton ({ postId }: EditButtonProps) {
 
     const { data, loading, error } = useQuery(GET_POST_TO_EDIT_BY_ID_QUERY, {
         variables: { postId }
@@ -18,7 +19,7 @@ export default function EditButton({ postId }: EditButtonProps) {
     if (loading) return <div>loading</div>
     return (
         <Button className='button'> Edit
-            < Link to={`/editpost/${postId}`}>
+            < Link to={ `/editpost/${postId}` }>
 
             </Link>
         </Button >

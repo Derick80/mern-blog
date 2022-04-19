@@ -107,6 +107,10 @@ a:hover {
   background-color: var(--clr-subtext);
 }
 
+label {
+  display: block;
+  font-weight: 600;
+}
 img {
   max-width: 100%;
   height: auto;
@@ -350,7 +354,11 @@ nav li a {
     display: flex;
 
   }
-
+  .card-body{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
   .card-info{
     display: flex;
     justify-content: space-between;

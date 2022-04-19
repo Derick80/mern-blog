@@ -22,7 +22,7 @@ function Header () {
             </ul>
             <ul className='right-nav-ul'>
                 <li className='right-li'>
-                    <NavLink to='/Profile'>Profile</NavLink>
+                    <NavLink to='/profile'>Profile</NavLink>
                 </li>
 
                 <li className='right-li'>

@@ -170,3 +170,48 @@ export const CREATE_COMMENT_MUTATION = gql`
     }
   }
 `
+export const DELETE_COMMENT_MUTATION = gql`
+  mutation deleteComment($commentId: ID!) {
+    deleteComment(commentId: $commentId)
+  }
+`
+export const CREATE_PROFILE_IMAGE_MUTATION = gql`
+  mutation CreateProfileandImage($input: CreateProfileandImage) {
+    createProfileandImage(input: $input) {
+      id
+      aboutMe
+    }
+  }
+`
+export const GET_USER_PROFILE_QUERY = gql`
+  {
+    getUserProfile {
+      userId
+      location
+      avatarUrl
+      nickName
+      username
+      aboutMe
+      email
+      id
+      name
+      email
+    }
+  }
+`
+export const EDIT_USERPROFILE_MUTATION = gql`
+  mutation EditUserProfile($input: ProfileandImageUpdate) {
+    editUserProfile(input: $input) {
+      title
+      content
+      imageUrl
+      name
+    }
+  }
+`
+
+export const DELETE_PROFILE_MUTATION = gql`
+  mutation deleteProfile($profileId: ID!) {
+    deleteProfile(profileId: $profileId)
+  }
+`
