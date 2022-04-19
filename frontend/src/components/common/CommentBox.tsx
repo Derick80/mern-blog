@@ -2,7 +2,6 @@ import { formatDistance } from 'date-fns';
 import React, { useState } from 'react'
 import { CommentProps } from '../../additional';
 import Button from './Button';
-import Comment from './Comment';
 
 export type CommentBoxProps = {
     comment: [CommentProps]

@@ -8,7 +8,6 @@ export default function Profile () {
     const { loading, data } = useQuery(GET_USER_PROFILE_QUERY, {
         fetchPolicy: 'network-only',
     })
-    console.log(data);
 
     if (loading) return <div>loading</div>
     if (data.getUserProfile.length > 0) {

@@ -13,7 +13,7 @@ module.exports = {
         throw new Error('profile not found')
       }
     },
-    async getUserProfile(_: any, _args: any, context: any) {
+    async getUserProfile(_: any, args: any, context: any) {
       const { user } = checkAuth(context)
 
       const userId = user.id
@@ -29,7 +29,9 @@ module.exports = {
   Mutation: {
     createProfile: async (
       _: any,
-      { profileInput: { location, avatarUrl, aboutMe, nickName } }: any,
+      {
+        profileInput: { location, avatarUrl, aboutMe, nickName }
+      }: typeof Profile,
       context: any
     ) => {
       const { user } = checkAuth(context)
@@ -85,11 +87,21 @@ module.exports = {
     editUserProfile: async (
       _: any,
       {
-        input: { picture, name, avatarUrl, location, aboutMe, profileId }
+        input: {
+          picture,
+          name,
+
+          location,
+          aboutMe,
+          nickName,
+          profileId
+        }
       }: any,
       context: any
     ) => {
       const { user } = checkAuth(context)
+      console.log({ profileId })
+
       try {
         if (picture) {
           const { avatarUrl } = await processUpload(picture)
@@ -97,6 +109,7 @@ module.exports = {
             avatarUrl: avatarUrl,
             name,
             location,
+            nickName,
             aboutMe
           })
           const profile = await updateProfile.save()
@@ -104,6 +117,8 @@ module.exports = {
         } else {
           const updateProfile = await Profile.findByIdAndUpdate(profileId, {
             name,
+            nickName,
+            username: user.username,
             location,
             aboutMe
           })

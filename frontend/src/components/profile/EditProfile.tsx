@@ -1,14 +1,18 @@
 import { gql, useMutation } from '@apollo/client'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CreateProfileFormValues, UpdateProfileFormValues } from '../../additional'
 import { CREATE_PROFILE_IMAGE_MUTATION, EDIT_USERPROFILE_MUTATION } from '../../utils/hooks/graphql'
+import Button from '../common/Button'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
 export default function EditProfile (initialState: Partial<UpdateProfileFormValues>
 ) {
     let navigate = useNavigate()
+    let { profileId } = useParams()
+    console.log({ profileId });
+
     const {
         handleSubmit,
         formState: { errors }
@@ -24,6 +28,7 @@ export default function EditProfile (initialState: Partial<UpdateProfileFormValu
     const [editUserProfile, { loading, error }] = useMutation(EDIT_USERPROFILE_MUTATION, {
         variables: {
             input: {
+                profileId,
                 picture: formData.picture,
                 name: formData.name,
                 aboutMe: formData.aboutMe,
@@ -108,6 +113,7 @@ export default function EditProfile (initialState: Partial<UpdateProfileFormValu
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
             />
+            <Button  >Submit</Button>
         </Form>
     )
 }

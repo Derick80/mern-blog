@@ -28,7 +28,7 @@ export default function Form ({ defaultValues, children, onSubmit, buttonLabel, 
 
     return (
         <form className={ className } onSubmit={ handleSubmit(onSubmit) } { ...rest }>
-            <div>
+            <div className="form-input">
                 { Array.isArray(children)
                     ? children.map((child) => {
                         return child.props.name
@@ -43,7 +43,7 @@ export default function Form ({ defaultValues, children, onSubmit, buttonLabel, 
                     })
                     : children }
             </div>
-            <Button >{ buttonLabel }</Button>
+
         </form>
     )
 }

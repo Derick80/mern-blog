@@ -11,8 +11,6 @@ export default function Dashboard () {
         fetchPolicy: 'network-only',
 
     })
-    const { user } = useContext(AuthContext);
-    console.table(data)
 
     if (loading) return <div>loading</div>
     return (

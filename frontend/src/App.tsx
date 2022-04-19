@@ -16,6 +16,7 @@ import CreatePost from "./pages/Create";
 import Edit from "./pages/Edit";
 import Create from "./pages/Create";
 import Profile from './pages/Profile';
+import EditProfile from './components/profile/EditProfile';
 
 
 function App () {
@@ -31,6 +32,8 @@ function App () {
             <Route path="/register" element={ <Register /> } />
             <Route path="/createpost" element={ <CreatePost /> } />
             <Route path="/profile" element={ <Profile /> } />
+            <Route path="/editProfile/:profileId" element={ <EditProfile /> } />
+
             <Route path="/drafts" element={ <Drafts /> } />
             <Route path="/editpost/:postId" element={ <Edit /> } />
 

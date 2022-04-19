@@ -9,7 +9,7 @@ import Comment from '../common/Comment'
 import CreateComment from './comment/CreateComment'
 import { formatDistance } from 'date-fns'
 import CommentBox from '../common/CommentBox'
-import { DELETE_POST_MUTATION } from '../../utils/hooks/graphql'
+import PublishButton from '../PublishButton'
 export type PostContentProps = {
     post: PostFeedProps
     comments: PostFeedProps
@@ -43,7 +43,6 @@ const Card = ({ post,
 
 }: CardProps) => {
     const { user }: any = useContext(AuthContext)
-    console.log(user);
 
     return (
         <div className='card-container'>
@@ -89,7 +88,7 @@ const Card = ({ post,
                     { user && user.username === post.username && <>
                         <DeleteButton postId={ post.id } />
                         <EditButton postId={ post.id } />
-
+                        { (post.published !== true) && <PublishButton postId={ post.id } /> }
                     </> }
                 </div>
             </div>

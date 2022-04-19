@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { CreatePostFormValues } from '../../additional'
 import { CREATE_IMAGE_POST } from '../../utils/hooks/graphql'
+import Button from '../common/Button'
 import Form from '../common/form/Form'
 import PostFormInput from '../common/form/FormInput'
 
@@ -15,7 +16,6 @@ export default function CreatePost (
 ) {
     let navigate = useNavigate()
     const {
-        handleSubmit,
         formState: { errors }
     } = useForm()
     const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export default function CreatePost (
         name: ''
     })
 
-    const [createPostAndImage, { loading, error }] = useMutation(
+    const [createPostAndImage] = useMutation(
         CREATE_IMAGE_POST,
         {
             variables: {
@@ -69,27 +69,32 @@ export default function CreatePost (
 
     return (
         <Form
-            buttonLabel='Submit'
+
 
             onSubmit={ onSubmit }
-            className='post-create-edit-form'
+
         >
             <PostFormInput
+                label='Title'
                 name='title'
                 type='text'
                 placeholder='Enter a Title'
                 error={ errors.title?.message }
                 onChange={ handleInputChange }
                 autoFocus
+                wrapperClass='text-area'
             />
             <PostFormInput
+                label='Post Content'
                 name='content'
                 type='text'
                 placeholder='Enter some Content'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
+                wrapperClass='large-text-area'
             />
             <PostFormInput
+                label='Upload an Image'
                 accept='image/*'
                 type='file'
                 name='picture'
@@ -97,12 +102,15 @@ export default function CreatePost (
                 onChange={ handlePictureChange }
             />
             <PostFormInput
+                label='Name of your Image'
                 name='name'
                 type='text'
                 placeholder='Enter a name for the image'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
+                wrapperClass='text-area'
             />
+            <Button className='button' >Submit</Button>
         </Form>
     )
 }

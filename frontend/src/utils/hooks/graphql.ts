@@ -200,11 +200,12 @@ export const GET_USER_PROFILE_QUERY = gql`
   }
 `
 export const EDIT_USERPROFILE_MUTATION = gql`
-  mutation EditUserProfile($input: ProfileandImageUpdate) {
+  mutation EditUserProfile($input: UpdateProfileAndImage) {
     editUserProfile(input: $input) {
-      title
-      content
-      imageUrl
+      location
+      aboutMe
+
+      avatarUrl
       name
     }
   }

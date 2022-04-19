@@ -16,7 +16,7 @@ module.exports = {
       }
     },
 
-    getDraftPosts: async (_: any, _args: any, context: any) => {
+    getDraftPosts: async (_: any, _args: any, context: typeof User) => {
       const { user } = checkAuth(context)
 
       try {
@@ -29,7 +29,7 @@ module.exports = {
         throw new Error("We didn't find any posts")
       }
     },
-    getPostbyId: async (_: any, { postId }: any, context: any) => {
+    getPostbyId: async (_: any, postId: string, context: typeof User) => {
       try {
         const post = await Post.findById(postId)
         if (post) {
@@ -47,7 +47,7 @@ module.exports = {
   Mutation: {
     createPost: async (
       _: any,
-      { postInput: { title, content, imageUrl } }: any,
+      { postInput: { title, content, imageUrl } }: typeof Post,
       context: any
     ) => {
       const { user } = checkAuth(context)
