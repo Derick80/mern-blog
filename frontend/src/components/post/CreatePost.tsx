@@ -82,16 +82,17 @@ export default function CreatePost (
                 error={ errors.title?.message }
                 onChange={ handleInputChange }
                 autoFocus
-                wrapperClass='text-area'
             />
             <PostFormInput
                 label='Post Content'
                 name='content'
                 type='text'
+                className='text-area'
+                rows='4'
                 placeholder='Enter some Content'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
-                wrapperClass='large-text-area'
+
             />
             <PostFormInput
                 label='Upload an Image'
@@ -108,7 +109,6 @@ export default function CreatePost (
                 placeholder='Enter a name for the image'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
-                wrapperClass='text-area'
             />
             <Button className='button' >Submit</Button>
         </Form>

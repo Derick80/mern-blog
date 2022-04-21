@@ -11,6 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     defaultValue?: any
     ref?: any
     hidden?: boolean
+    rows?: string
 }
 export default function FormInput ({
     register,
@@ -22,12 +23,15 @@ export default function FormInput ({
     formData,
     defaultValue,
     hidden,
+    rows,
+    className,
     ...rest
 }: InputProps) {
     return (
         <div className={ wrapperClass }>
             { label && <label htmlFor={ name }>{ label }</label> }
             <input
+                className={ className }
                 aria-invalid={ error ? "true" : "false" }
                 { ...register(name) }
                 { ...rest }

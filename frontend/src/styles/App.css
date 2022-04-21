@@ -396,40 +396,22 @@ height: 400px;
 background: linear-gradient(107.26deg, rgba(12, 172, 232, 0.48) 0.47%, rgba(0, 255, 240, 0.456) 100%);
 backdrop-filter: blur(100px);
 /* Note: backdrop-filter has minimal browser support */
-
 border-radius: 30px;
-
-
 }
 
- form{
-    display: flex;
-    max-width: 100%;
 
-  }
 
   /* #endregion  mid media */
 }
 
 
-input{
-  display:flex;
-  flex-direction: column;
-  align-content:center;
 
-  width: max-content;
-}
 
-.text-area {
-  width: 340px;
-}
 .upload-button {
 
 }
 
-.post-submit-button {
 
-}
 
 .comment-info {
   display: flex;
@@ -463,6 +445,25 @@ input{
 .comment-info {
   display: flex;
   flex-direction: row;
+
+}
+
+.form-input, .form-input input{
+
+  display:flex;
+  flex-direction: column;
+  align-content:center;
+  width: 100%;
+
+}
+
+ input.text-area{
+
+  display:flex;
+  flex-direction: column;
+  align-content:center;
+height: 100%;
+  width: 100%;
 
 }
 
