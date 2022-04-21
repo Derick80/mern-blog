@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { CreatePostFormValues } from '../../../additional'
 import { CREATE_COMMENT_MUTATION } from '../../../utils/hooks/graphql'
+import Button from '../../common/Button'
 import Form from '../../common/form/Form'
 import PostFormInput from '../../common/form/FormInput'
 
@@ -18,17 +19,17 @@ export default function CreateComment ({ postId }: CreateCommentProps,
 ) {
     let navigate = useNavigate()
     const {
-        handleSubmit,
+
         formState: { errors }
     } = useForm()
     const [formData, setFormData] = useState({
-        name: '',
+
 
         content: '',
 
     })
 
-    const [createComment, { loading, error }] = useMutation(
+    const [createComment] = useMutation(
         CREATE_COMMENT_MUTATION,
         {
             variables: {
@@ -80,19 +81,15 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             <PostFormInput
                 name='content'
                 type='text'
+                label="Post a Comment"
+
                 placeholder='Add a comment...'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }
             />
 
-            <PostFormInput
-                name='name'
-                type='text'
-                hidden
-                placeholder='Enter a name for the image'
-                onChange={ handleInputChange }
-                error={ errors.content?.message }
-            />
+
+            <Button className='button' >Submit</Button>
         </Form>
     )
 }

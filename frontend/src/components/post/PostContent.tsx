@@ -43,6 +43,7 @@ const Card = ({ post,
 
 }: CardProps) => {
     const { user }: any = useContext(AuthContext)
+    console.log(post.userImage);
 
     return (
         <div className='card-container'>
@@ -50,7 +51,7 @@ const Card = ({ post,
 
                 <div className='card-header'>
                     { <img src={ post.imageUrl } alt='bleh' /> }
-
+                    { <img className="user-avatar" src={ post.userImage } alt='bleh' /> }
                 </div>
                 <div className="card-info">
                     <h5> { post.title }</h5>

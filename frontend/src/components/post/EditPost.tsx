@@ -1,9 +1,9 @@
 import { gql, useMutation } from '@apollo/client'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { UpdatePostAndImageFormValues } from '../../additional'
-import { EDIT_POST_MUTATION, FETCH_POSTS_QUERY } from '../../utils/hooks/graphql'
+import { EDIT_POST_MUTATION } from '../../utils/hooks/graphql'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
 
@@ -23,7 +23,7 @@ export default function EditPost ({ data }: any) {
     })
 
 
-    const [postAndImageUpdate, { loading, error }] = useMutation(
+    const [postAndImageUpdate] = useMutation(
         EDIT_POST_MUTATION,
         {
 

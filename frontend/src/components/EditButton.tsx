@@ -1,7 +1,7 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { EDIT_POST_MUTATION, GET_POST_TO_EDIT_BY_ID_QUERY, GET_USER_PROFILE_QUERY } from '../utils/hooks/graphql'
+import { GET_POST_TO_EDIT_BY_ID_QUERY, GET_USER_PROFILE_QUERY } from '../utils/hooks/graphql'
 import Button from './common/Button'
 
 

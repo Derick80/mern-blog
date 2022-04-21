@@ -16,7 +16,7 @@ module.exports = {
       }
     },
 
-    getDraftPosts: async (_: any, _args: any, context: typeof User) => {
+    getDraftPosts: async (_: any, _args: any, context: any) => {
       const { user } = checkAuth(context)
 
       try {
@@ -29,7 +29,7 @@ module.exports = {
         throw new Error("We didn't find any posts")
       }
     },
-    getPostbyId: async (_: any, postId: string, context: typeof User) => {
+    getPostbyId: async (_: any, postId: string, context: any) => {
       try {
         const post = await Post.findById(postId)
         if (post) {
@@ -56,6 +56,7 @@ module.exports = {
         title: title,
         content: content,
         imageUrl: imageUrl,
+        userImage: user.userImage,
         username: user.username,
         author: user.id,
         createdAt: new Date().toISOString()
@@ -163,6 +164,7 @@ module.exports = {
           username: user.username,
           name: name,
           imageUrl: imageUrl,
+          userImage: user.userImage,
           imageUserId: user.id,
           imageUserName: user.username,
           author: user.id,

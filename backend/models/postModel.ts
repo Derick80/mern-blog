@@ -21,6 +21,9 @@ const PostSchema = new mongoose.Schema({
   imageUrl: {
     type: String
   },
+  userImage: {
+    type: String
+  },
   comments: [
     {
       content: String,

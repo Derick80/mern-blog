@@ -120,6 +120,12 @@ img {
   object-fit: cover;
 }
 
+img.user-avatar {
+width: 40px;
+height: 40px;
+border-radius: 40%;
+}
+
 svg {
   /* color: red; */
   width: 1.5rem;
@@ -411,7 +417,7 @@ input{
   flex-direction: column;
   align-content:center;
 
-width:fit-content;
+  width: max-content;
 }
 
 .text-area {

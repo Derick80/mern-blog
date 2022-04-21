@@ -24,7 +24,9 @@ function Header () {
                 <li className='right-li'>
                     <NavLink to='/profile'>Profile</NavLink>
                 </li>
-
+                <li className='right-li'>
+                    <NavLink to='/account'>Account</NavLink>
+                </li>
                 <li className='right-li'>
                     <button onClick={ logout }>logout</button>
                 </li>

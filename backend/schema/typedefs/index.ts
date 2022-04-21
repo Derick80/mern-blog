@@ -19,6 +19,10 @@ const typeDefs = gql`
     createdAt: String
     token: String!
     role: String!
+    name: String
+    userImage: String
+    profile: [Profile]
+    posts: [Post]!
   }
   type Query {
     getUsers: [User]
@@ -33,6 +37,7 @@ const typeDefs = gql`
     author: String!
     name: String
     published: Boolean
+    userImage: String
     likes: [Like]!
     likeCount: Int!
     comments: [Comment]
@@ -81,6 +86,7 @@ const typeDefs = gql`
     getPosts: [Post]
     getDraftPosts: [Post]
     getPostbyId(postId: ID!): Post
+    getCurrentUser: User
     imageUrl: String
     uploads: [File]
     getUserImageGallery: [Gallery]
@@ -117,6 +123,8 @@ const typeDefs = gql`
     name: String!
     imageUrl: String
     imageUserId: String
+    userImage: String
+
     title: String!
     content: String!
     createdAt: String
@@ -127,6 +135,7 @@ const typeDefs = gql`
     picture: Upload
     name: String
     imageUrl: String
+    userImage: String
     title: String
     content: String
   }
@@ -154,8 +163,15 @@ const typeDefs = gql`
     nickName: String
     avatarUrl: String
   }
+  input UpdateUser {
+    picture: Upload!
+    userId: String!
+    name: String
+    userImage: String
+  }
 
   type Mutation {
+    updateUser(input: UpdateUser): User
     createGalleryEntry(input: CreateGalleryEntry!): Post!
     createPostandImage(input: CreatePostandImage): Post!
     editPost(input: PostAndImageUpdate): Post!

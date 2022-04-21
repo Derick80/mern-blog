@@ -10,6 +10,7 @@ export interface PostFeedProps {
   content: string
   username: string
   imageUrl: string
+  userImage: string
   author: string
   createdAt: string
   likes: {
@@ -108,5 +109,11 @@ export interface UpdateProfileFormValues {
   picture?: null
   nickName?: string
   location?: string
+  name?: string
+}
+
+export interface UpdateAccountFormValues {
+  userId?: string
+  picture?: null
   name?: string
 }

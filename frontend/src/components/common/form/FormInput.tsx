@@ -10,6 +10,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     formData?: any
     defaultValue?: any
     ref?: any
+    hidden?: boolean
 }
 export default function FormInput ({
     register,
@@ -20,6 +21,7 @@ export default function FormInput ({
     value,
     formData,
     defaultValue,
+    hidden,
     ...rest
 }: InputProps) {
     return (

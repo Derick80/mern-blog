@@ -7,7 +7,6 @@ export interface UserData {
 }
 export interface IState {
   user: null
-
   login: (UserData: UserData) => void
   logout: () => void
 }

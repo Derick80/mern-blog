@@ -28,6 +28,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: 'user'
   },
+  name: {
+    type: String
+  },
+  userImage: {
+    type: String
+  },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'posts' }],
   profile: [{ type: mongoose.Schema.Types.ObjectId, ref: 'profile' }]
 })

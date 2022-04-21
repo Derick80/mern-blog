@@ -36,6 +36,16 @@ export const LOGIN_USER = gql`
     }
   }
 `
+
+export const GET_CURRENT_USER = gql`
+  {
+    getCurrentUser {
+      id
+      userImage
+      name
+    }
+  }
+`
 export const FETCH_POSTS_QUERY = gql`
   {
     getPosts {
@@ -48,6 +58,7 @@ export const FETCH_POSTS_QUERY = gql`
       published
       likeCount
       imageUrl
+      userImage
       likes {
         id
         username
@@ -74,6 +85,7 @@ export const FETCH_DRAFTS_QUERY = gql`
       username
       published
       imageUrl
+      userImage
       likeCount
       likes {
         username
@@ -143,6 +155,7 @@ export const CREATE_IMAGE_POST = gql`
     createPostandImage(input: $input) {
       id
       title
+      userImage
     }
   }
 `
@@ -214,5 +227,14 @@ export const EDIT_USERPROFILE_MUTATION = gql`
 export const DELETE_PROFILE_MUTATION = gql`
   mutation deleteProfile($profileId: ID!) {
     deleteProfile(profileId: $profileId)
+  }
+`
+
+export const UPDATE_USER_MUTATION = gql`
+  mutation updateUser($input: UpdateUser) {
+    updateUser(input: $input) {
+      userImage
+      name
+    }
   }
 `

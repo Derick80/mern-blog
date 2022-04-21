@@ -86,17 +86,7 @@ module.exports = {
     },
     editUserProfile: async (
       _: any,
-      {
-        input: {
-          picture,
-          name,
-
-          location,
-          aboutMe,
-          nickName,
-          profileId
-        }
-      }: any,
+      { input: { picture, name, location, aboutMe, nickName, profileId } }: any,
       context: any
     ) => {
       const { user } = checkAuth(context)

@@ -17,6 +17,8 @@ import Edit from "./pages/Edit";
 import Create from "./pages/Create";
 import Profile from './pages/Profile';
 import EditProfile from './components/profile/EditProfile';
+import Account from './pages/Account';
+import UpdateAccount from './components/UpdateAccount';
 
 
 function App () {
@@ -33,7 +35,8 @@ function App () {
             <Route path="/createpost" element={ <CreatePost /> } />
             <Route path="/profile" element={ <Profile /> } />
             <Route path="/editProfile/:profileId" element={ <EditProfile /> } />
-
+            <Route path="/account" element={ <Account /> } />
+            <Route path="/updateAccount/:userId" element={ <UpdateAccount /> } />
             <Route path="/drafts" element={ <Drafts /> } />
             <Route path="/editpost/:postId" element={ <Edit /> } />
 

@@ -1,13 +1,17 @@
+import { storeUpload } from '../../config/utils/userAndImageOperations'
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../../models/userModel')
+const checkAuth = require('../../middleware/check-auth')
 
 function generateToken(user: any) {
   return jwt.sign(
     {
       id: user._id,
       email: user.email,
-      username: user.username
+      username: user.username,
+      userImage: user.userImage
     },
     process.env.JWT_SECRET,
     { expiresIn: '30 days' }
@@ -22,6 +26,19 @@ module.exports = {
         return users
       } catch (error) {
         throw new Error('We did not find any users')
+      }
+    },
+    getCurrentUser: async (_: any, args: any, context: any) => {
+      const { user } = checkAuth(context)
+      try {
+        const userInfo = await User.findById(user.id)
+        if (userInfo) {
+          return userInfo
+        } else {
+          throw new Error('Post not found')
+        }
+      } catch (error) {
+        throw new Error('errors')
       }
     }
   },
@@ -74,8 +91,39 @@ module.exports = {
       return {
         ...user._doc,
         id: user._id,
+        userImage: user.userImage,
         token
+      }
+    },
+    updateUser: async (
+      _source: unknown,
+      { input: { picture, name, userId } }: any,
+      context: typeof User
+    ) => {
+      const { user } = checkAuth(context)
+
+      if (picture) {
+        const { userImage } = await processUpload(picture)
+        const updateUserData = await User.findByIdAndUpdate(userId, {
+          userImage: userImage,
+          name
+        })
+        const userUpdated = await updateUserData.save()
+        return userUpdated
+      } else {
+        throw new Error('Could not find user')
       }
     }
   }
+}
+
+const processUpload = async (upload: any) => {
+  const { createReadStream, filename, context } = await upload
+
+  const { userImage, name } = await storeUpload(
+    createReadStream,
+    filename,
+    context
+  )
+  return { userImage, filename, name }
 }

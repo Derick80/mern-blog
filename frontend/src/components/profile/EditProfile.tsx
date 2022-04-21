@@ -3,7 +3,7 @@ import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CreateProfileFormValues, UpdateProfileFormValues } from '../../additional'
-import { CREATE_PROFILE_IMAGE_MUTATION, EDIT_USERPROFILE_MUTATION } from '../../utils/hooks/graphql'
+import { EDIT_USERPROFILE_MUTATION } from '../../utils/hooks/graphql'
 import Button from '../common/Button'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
@@ -14,7 +14,6 @@ export default function EditProfile (initialState: Partial<UpdateProfileFormValu
     console.log({ profileId });
 
     const {
-        handleSubmit,
         formState: { errors }
     } = useForm()
     const [formData, setFormData] = useState({
@@ -25,7 +24,7 @@ export default function EditProfile (initialState: Partial<UpdateProfileFormValu
         name: ''
     })
 
-    const [editUserProfile, { loading, error }] = useMutation(EDIT_USERPROFILE_MUTATION, {
+    const [editUserProfile] = useMutation(EDIT_USERPROFILE_MUTATION, {
         variables: {
             input: {
                 profileId,
