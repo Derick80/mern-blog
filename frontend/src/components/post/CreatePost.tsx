@@ -106,6 +106,7 @@ export default function CreatePost (
                 label='Name of your Image'
                 name='name'
                 type='text'
+
                 placeholder='Enter a name for the image'
                 onChange={ handleInputChange }
                 error={ errors.content?.message }

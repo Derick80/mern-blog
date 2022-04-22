@@ -89,7 +89,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             />
 
 
-            <Button className='button' >Submit</Button>
+            <Button className='btn' >Post your comment</Button>
         </Form>
     )
 }

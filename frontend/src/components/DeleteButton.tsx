@@ -26,6 +26,9 @@ export default function DeleteButton ({ postId, profileId, commentId, callback }
     })
 
     return (
-        <Button className='button' onClick={ () => deletePostOrProfile() }>Delete</Button>
+        <Button className='btn-icon' role="switch" aria-checked='true' onClick={ () => deletePostOrProfile() }>
+
+            <span className='material-icons-outlined'>delete</span>
+        </Button>
     )
 }

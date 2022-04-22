@@ -12,6 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     ref?: any
     hidden?: boolean
     rows?: string
+    autoFocus?: boolean
 }
 export default function FormInput ({
     register,
@@ -25,6 +26,7 @@ export default function FormInput ({
     hidden,
     rows,
     className,
+    autoFocus,
     ...rest
 }: InputProps) {
     return (
@@ -34,6 +36,7 @@ export default function FormInput ({
                 className={ className }
                 aria-invalid={ error ? "true" : "false" }
                 { ...register(name) }
+                autofocus='true'
                 { ...rest }
             />
             { error && <span role="alert">{ error }</span> }
