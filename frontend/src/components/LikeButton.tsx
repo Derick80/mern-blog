@@ -21,11 +21,11 @@ export default function LikeButton ({ user, post: { id, likeCount, likes } }: { 
     const likeButton = user ? (
         liked ? (
             <Button className="btn-icon" role="switch" aria-checked='true' onClick={ likePost }>
-                <span className='material-icons orange600'>{ contentText }</span>Liked&nbsp; { likeCount }
+                <span className='material-icons orange600'>{ contentText }</span> &nbsp; { likeCount }
             </Button>
         ) : (
             <Button className="btn-icon" type='button' role="switch" aria-checked='false' onClick={ likePost }>
-                <span className='material-icons-outlined'>{ contentText }</span> Like &nbsp; { likeCount }
+                <span className='material-icons-outlined'>{ contentText }</span> &nbsp; { likeCount }
             </Button>
         ))
         : (
