@@ -38,7 +38,7 @@ module.exports = {
           throw new Error('Post not found')
         }
       } catch (error) {
-        throw new Error('errors')
+        throw new Error('Post errors')
       }
     }
   },

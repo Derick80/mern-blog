@@ -8,13 +8,13 @@ export interface DeleteButtonProps {
     postId?: string
     commentId?: string
     profileId?: string
-    callback: () => void
+
 }
 
 
-export default function DeleteButton ({ postId, profileId, commentId, callback }: Partial<DeleteButtonProps>) {
+export default function DeleteButton ({ postId, profileId, commentId }: Partial<DeleteButtonProps>) {
     let navigate = useNavigate()
-    const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION || profileId ? DELETE_PROFILE_MUTATION : DELETE_POST_MUTATION
+    const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
 
 
     const [deletePostOrProfile] = useMutation(mutation, {

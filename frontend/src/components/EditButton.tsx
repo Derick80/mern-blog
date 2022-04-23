@@ -18,7 +18,7 @@ export default function EditButton ({ postId, profileId }: EditButtonProps) {
     })
 
     if (loading) return <div>loading</div>
-    if (postId) return <>
+    if (postId && data) return <>
         <Button className='btn-icon' role="switch" aria-checked='true' >
             <span className='material-icons orange600'>edit
 

@@ -51,9 +51,9 @@ const Card = ({ post,
         <div className='card'>
 
             <div className='card-header'>
-                <h6> { post.title }</h6>
-                { <img src={ post.imageUrl } alt='bleh' /> }
 
+                { <img className="card-image" src={ post.imageUrl } alt='bleh' /> }
+                <h6> { post.title }</h6>
             </div>
             <div className="card-info">
                 <p>Written by

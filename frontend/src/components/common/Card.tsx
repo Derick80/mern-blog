@@ -35,7 +35,7 @@ const Card = ({
         <div className='card-container'>
             <div className='card' key={ profile.id }>
                 <div className='card-header'>
-                    { <img src={ profile.avatarUrl } alt='bleh' /> }
+                    { <img className="avatar-img" src={ profile.avatarUrl } alt='bleh' /> }
                 </div>
 
                 <div className='card-body'>

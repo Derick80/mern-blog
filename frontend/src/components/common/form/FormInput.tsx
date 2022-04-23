@@ -36,7 +36,7 @@ export default function FormInput ({
                 className={ className }
                 aria-invalid={ error ? "true" : "false" }
                 { ...register(name) }
-                autofocus='true'
+                autoFocus={ true }
                 { ...rest }
             />
             { error && <span role="alert">{ error }</span> }
