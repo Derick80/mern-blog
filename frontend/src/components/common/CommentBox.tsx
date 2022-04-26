@@ -48,11 +48,12 @@ export default function CommentBox ({ comment, commentCount }: CommentBoxProps) 
                         )
                     })
                 }
-                { comment.slice(0, n).map((item: CommentProps) => {
-                    return (
-                        <CommentComponent key={ item.id } item={ item } />
-                    )
-                }) }
+                { allComments === false &&
+                    comment.slice(0, n).map((item: CommentProps) => {
+                        return (
+                            <CommentComponent key={ item.id } item={ item } />
+                        )
+                    }) }
             </>
 
         </div>

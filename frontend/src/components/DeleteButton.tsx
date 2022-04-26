@@ -5,17 +5,19 @@ import { DELETE_POST_MUTATION, DELETE_PROFILE_MUTATION, DELETE_COMMENT_MUTATION 
 import Button from './common/Button'
 
 export interface DeleteButtonProps {
+
     postId?: string
     commentId?: string
     profileId?: string
-
+    props?: unknown
 }
 
 
-export default function DeleteButton ({ postId, profileId, commentId }: Partial<DeleteButtonProps>) {
+export default function DeleteButton ({ props, postId, profileId, commentId }: Partial<DeleteButtonProps>) {
     let navigate = useNavigate()
-    const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION
 
+
+    const mutation = postId ? DELETE_POST_MUTATION : commentId ? DELETE_COMMENT_MUTATION : DELETE_PROFILE_MUTATION
 
     const [deletePostOrProfile] = useMutation(mutation, {
         variables: {

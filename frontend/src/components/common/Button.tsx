@@ -12,7 +12,8 @@ interface Props {
 
 }
 
-export default function Button ({ onClick, className, children, ...props }: Props) {
+export default function Button ({ onClick, className, children, type, ...props }: Props) {
+
     return (
         <button className={ className } onClick={ onClick }>
             { children }

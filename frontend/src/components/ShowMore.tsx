@@ -16,8 +16,8 @@ function ShowButton ({ ...props }) {
         return (
             <>
                 { more ? content : `${content?.substring(0, 100)}` }
-                <Button className="btn-icon" role="switch" onClick={ onClick }>
-                    <span className='material-icons orange600'> { more ? 'expand_less' : 'expand_more' }</span>{ more ? 'less' : 'more...' }
+                <Button className="btn-icon-filled" role="switch" onClick={ onClick }>
+                    <span className='material-icons'> { more ? 'expand_less' : 'expand_more' }</span>{ more ? 'less' : 'more...' }
                 </Button>
             </>
         )

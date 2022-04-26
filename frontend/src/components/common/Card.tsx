@@ -22,6 +22,7 @@ interface CardProps {
     onChange?: () => void
     className?: string
     profile: ProfileProps
+
 }
 
 

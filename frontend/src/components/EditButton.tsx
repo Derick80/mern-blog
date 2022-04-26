@@ -8,9 +8,10 @@ import Button from './common/Button'
 export interface EditButtonProps {
     postId?: string
     profileId?: string
+    props?: unknown
 }
 
-export default function EditButton ({ postId, profileId }: EditButtonProps) {
+export default function EditButton ({ props, postId, profileId }: EditButtonProps) {
 
     const query = profileId ? GET_USER_PROFILE_QUERY : GET_POST_TO_EDIT_BY_ID_QUERY
     const { data, loading } = useQuery(query, {
@@ -20,7 +21,7 @@ export default function EditButton ({ postId, profileId }: EditButtonProps) {
     if (loading) return <div>loading</div>
     if (postId && data) return <>
         <Button className='btn-icon' role="switch" aria-checked='true' >
-            <span className='material-icons orange600'>edit
+            <span className='material-icons'>edit
 
                 < Link to={ `/editpost/${postId}` }>
 
@@ -31,7 +32,7 @@ export default function EditButton ({ postId, profileId }: EditButtonProps) {
     </>
     return (<>
         <Button className='btn-icon' role="switch" aria-checked='true' >
-            <span className='material-icons orange600'>edit
+            <span className='material-icons'>edit
                 < Link to={ `/editProfile/${profileId}` }>
 
                 </Link>

@@ -11,7 +11,8 @@ export type CardFooterProps = {
     onClick?: () => void
     onChange?: () => void
     className?: string
-    id?: string
+    props?: unknown
+    id: string
 }
 export default function CardFooter ({ id }: CardFooterProps) {
     const [isMine, setIsMine] = useState(false)
@@ -23,7 +24,7 @@ export default function CardFooter ({ id }: CardFooterProps) {
 
         <ul>
 
-            <Button className='btn-icon-menu' onClick={ handleMe } >
+            <Button className='btn-card-action' onClick={ handleMe } >
 
                 <span className="material-icons">more_vert</span>
                 <li>Edit or Delete your Post </li>
@@ -36,7 +37,7 @@ export default function CardFooter ({ id }: CardFooterProps) {
 
 
             </Button> </ul>
-    ) : (<Button className='btn-icon-menu-start' onClick={ handleMe } >
+    ) : (<Button className='btn-card-action' onClick={ handleMe } >
         <span className="material-icons">more_vert</span>
 
     </Button>

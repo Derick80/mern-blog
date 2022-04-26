@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useContext } from "react";
-import PostContent from '../components/post/PostContent';
+import Posts from '../components/common/card/PostCard';
 import { AuthContext } from "../utils/context/auth";
 import { FETCH_DRAFTS_QUERY } from "../utils/hooks/graphql";
 
@@ -18,7 +18,7 @@ export default function Drafts (): any {
 
     return (<div className="create-edit-post-container">
         { data.getDraftPosts.map((post: any) => {
-            return <PostContent key={ post.id } { ...post } />
+            return <Posts key={ post.id } { ...post } />
         }) }
     </div>)
 

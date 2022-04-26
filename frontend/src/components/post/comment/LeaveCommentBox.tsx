@@ -18,7 +18,7 @@ export default function LeaveCommentBox ({ open, children, postId }: CommentBoxP
         <>
             <div>
 
-                <h6 className="font-weight-bold">Leave a Coment</h6>
+
                 <Button className="btn" onClick={ handleFilterOpening }>
                     { !isOpen ? (
                         <MdExpandMore />

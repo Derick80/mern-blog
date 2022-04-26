@@ -79,9 +79,9 @@ export default function CreateComment ({ postId }: CreateCommentProps,
         >
 
             <PostFormInput
+
                 name='content'
                 type='text'
-                label="Post a Comment"
 
                 placeholder='Leave a comment...'
                 onChange={ handleInputChange }
@@ -89,7 +89,7 @@ export default function CreateComment ({ postId }: CreateCommentProps,
             />
 
 
-            <Button className='btn' >Post your comment</Button>
+            <Button className='button' >Submit</Button>
         </Form>
     )
 }
