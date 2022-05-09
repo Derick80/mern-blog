@@ -28,9 +28,10 @@ export default function DeleteButton ({ props, postId, profileId, commentId }: P
     })
 
     return (
-        <Button className='btn-icon' role="switch" aria-checked='true' onClick={ () => deletePostOrProfile() }>
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <div className='btn-icon' role="switch" aria-checked='true' onClick={ () => deletePostOrProfile() }>
 
             <span className='material-icons-outlined'>delete</span>
-        </Button>
+        </div>
     )
 }

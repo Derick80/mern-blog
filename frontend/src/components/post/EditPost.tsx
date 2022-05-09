@@ -1,14 +1,20 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql, useMutation, useQuery } from '@apollo/client'
 import React, { BaseSyntheticEvent, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { UpdatePostAndImageFormValues } from '../../additional'
-import { EDIT_POST_MUTATION } from '../../utils/hooks/graphql'
+import { EDIT_POST_MUTATION, GET_POST_TO_EDIT_BY_ID_QUERY } from '../../utils/hooks/graphql'
 import Form from '../common/form/Form'
 import FormInput from '../common/form/FormInput'
 
-export default function EditPost ({ data }: any) {
+export default function EditPost ({ postId }: any) {
     let navigate = useNavigate()
+    const { data, loading } = useQuery(GET_POST_TO_EDIT_BY_ID_QUERY, {
+        variables: { postId }
+    })
+
+
+
     const {
 
         formState: { errors }
@@ -68,6 +74,7 @@ export default function EditPost ({ data }: any) {
     }
     const onSubmit: SubmitHandler<UpdatePostAndImageFormValues> = (
     ) => postAndImageUpdate()
+    if (loading) return <div>loading</div>
     return (
         <div className="create-edit-post-container">
             <Form

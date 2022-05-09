@@ -38,7 +38,7 @@ function App () {
             <Route path="/account" element={ <Account /> } />
             <Route path="/updateAccount/:userId" element={ <UpdateAccount /> } />
             <Route path="/drafts" element={ <Drafts /> } />
-            <Route path="/editpost/:postId" element={ <Edit /> } />
+            <Route path="/edit/:postId" element={ <Edit /> } />
 
             <Route path="/create" element={ <Create /> } />
 

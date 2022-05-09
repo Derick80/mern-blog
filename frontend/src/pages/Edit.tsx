@@ -13,7 +13,6 @@ export default function Edit () {
     let { postId } = useParams()
     const { data, loading, error } = useQuery(GET_POST_TO_EDIT_BY_ID_QUERY, {
         variables: { postId },
-        fetchPolicy: 'network-only'
     })
 
     return data ? <EditPost data={ data } /> : <div>loading...</div>

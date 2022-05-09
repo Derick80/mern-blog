@@ -68,8 +68,8 @@ function CommentComponent ({ item }: any) {
                 { item.content }
             </div>
             <div className="comment-info">
-                <p>Posted by &nbsp;{ item.username } </p>
-
+                <p>by &nbsp;{ item.username } </p>
+                &nbsp;
                 <p>{ formatDistance(new Date(item.createdAt), new Date(), { addSuffix: true }) }</p>
             </div>
 

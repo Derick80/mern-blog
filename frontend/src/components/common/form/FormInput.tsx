@@ -6,13 +6,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     register?: any;
     wrapperClass?: string;
     className?: string;
-    value?: string;
+    value?: any;
     formData?: any
     defaultValue?: any
     ref?: any
     hidden?: boolean
     rows?: string
     autoFocus?: boolean
+    onChange?: (...args: any) => any,
+
 }
 export default function FormInput ({
     register,
@@ -27,10 +29,11 @@ export default function FormInput ({
     rows,
     className,
     autoFocus,
+    onChange = () => { },
     ...rest
 }: InputProps) {
     return (
-        <div className={ wrapperClass }>
+        <>
             { label && <label htmlFor={ name }>{ label }</label> }
             <input
                 className={ className }
@@ -40,6 +43,6 @@ export default function FormInput ({
                 { ...rest }
             />
             { error && <span role="alert">{ error }</span> }
-        </div>
+        </>
     )
 }

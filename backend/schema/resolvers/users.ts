@@ -35,7 +35,7 @@ module.exports = {
         if (userInfo) {
           return userInfo
         } else {
-          throw new Error('Post not found')
+          throw new Error('User not found')
         }
       } catch (error) {
         throw new Error('errors')

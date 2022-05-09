@@ -57,8 +57,8 @@ export default function CreatePost (
             }
         })
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value })
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {
+        setFormData({ ...formData, [field]: event.target.value })
     }
     const handlePictureChange = (event: BaseSyntheticEvent) => {
         setFormData({ ...formData, [event.target.name]: event.target.files[0] })
@@ -80,7 +80,8 @@ export default function CreatePost (
                 type='text'
                 placeholder='Enter a Title'
                 error={ errors.title?.message }
-                onChange={ handleInputChange }
+                onChange={ (e) => handleInputChange(e, 'title') }
+
                 autoFocus
             />
             <PostFormInput

@@ -1,7 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useContext } from "react";
 import Posts from '../components/common/card/PostCard';
-import { AuthContext } from "../utils/context/auth";
 import { FETCH_DRAFTS_QUERY } from "../utils/hooks/graphql";
 
 
@@ -10,7 +8,6 @@ export default function Drafts (): any {
         fetchPolicy: 'network-only',
 
     })
-    console.log(data)
 
     if (loading) return <div>loading</div>
 

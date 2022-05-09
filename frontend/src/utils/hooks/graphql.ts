@@ -101,7 +101,7 @@ export const FETCH_DRAFTS_QUERY = gql`
   }
 `
 export const GET_POST_TO_EDIT_BY_ID_QUERY = gql`
-  query getPostbyId($postId: ID!) {
+  query GetPostbyId($postId: ID!) {
     getPostbyId(postId: $postId) {
       id
       title

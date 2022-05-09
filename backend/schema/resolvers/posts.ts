@@ -30,15 +30,11 @@ module.exports = {
       }
     },
     getPostbyId: async (_: any, postId: string, context: any) => {
-      try {
-        const post = await Post.findById(postId)
-        if (post) {
-          return post
-        } else {
-          throw new Error('Post not found')
-        }
-      } catch (error) {
-        throw new Error('Post errors')
+      const post = await Post.findById(postId)
+      if (post) {
+        return post
+      } else {
+        throw new Error('Post not found')
       }
     }
   },

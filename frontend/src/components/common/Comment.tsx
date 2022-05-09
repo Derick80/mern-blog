@@ -13,16 +13,16 @@ export type CommentProps = {
 export default function Comment ({ comment }: CommentProps) {
     return (
         <>
-            <div className='comment-item' key={ comment.id }>
-                <div className="comment-content">
+            <ul className='comment-item' key={ comment.id }>
+                <li className="comment-content">
                     { comment.content }
-                </div>
+                </li>
                 <div className="comment-info">
                     <p>Posted by{ comment.username } </p>
 
                     <p>{ formatDistance(new Date(comment.createdAt), new Date(), { addSuffix: true }) }</p>
                 </div>
-            </div>
+            </ul>
 
         </>
 

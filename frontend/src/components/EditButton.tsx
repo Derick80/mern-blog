@@ -13,31 +13,24 @@ export interface EditButtonProps {
 
 export default function EditButton ({ props, postId, profileId }: EditButtonProps) {
 
-    const query = profileId ? GET_USER_PROFILE_QUERY : GET_POST_TO_EDIT_BY_ID_QUERY
-    const { data, loading } = useQuery(query, {
-        variables: { postId, profileId }
-    })
 
-    if (loading) return <div>loading</div>
-    if (postId && data) return <>
-        <Button className='btn-icon' role="switch" aria-checked='true' >
-            <span className='material-icons'>edit
+    if (postId) return <>
+        <div className='btn-icon' role="switch" aria-checked='true' >
+            < Link to={ `/edit/${postId.toString()}` }>
+                <span className='material-icons-outlined'>edit </span>
+            </Link>
 
-                < Link to={ `/editpost/${postId}` }>
 
-                </Link>
-            </span>
-
-        </Button >
+        </div >
     </>
     return (<>
-        <Button className='btn-icon' role="switch" aria-checked='true' >
-            <span className='material-icons'>edit
+        <div className='btn-icon' role="switch" aria-checked='true' >
+            <span className='material-icons-outlined'>edit
                 < Link to={ `/editProfile/${profileId}` }>
 
                 </Link>
             </span>
-        </Button >
+        </div >
     </>)
 
 
