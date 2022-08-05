@@ -5,7 +5,7 @@ import { AuthContext } from "../utils/context/auth";
 import { LOGIN_USER } from "../utils/hooks/graphql";
 import { useForm } from "../utils/hooks/useForm"
 
-export default function Login() {
+export default function Login () {
     let navigate = useNavigate()
     const context = useContext(AuthContext)
 
@@ -14,12 +14,12 @@ export default function Login() {
         password: '',
     })
 
-    function loginUserCallback() {
+    function loginUserCallback () {
         loginUser()
     }
 
     const [loginUser] = useMutation(LOGIN_USER, {
-        update(proxy, { data: { login: userData } }) {
+        update (proxy, { data: { login: userData } }) {
             console.log(userData);
             context.login(userData)
             navigate('/')
@@ -33,16 +33,16 @@ export default function Login() {
     return (
         <div className="primary-content">
 
-            <form className="form-container" onSubmit={handleSubmit} >
+            <form className="form-container" onSubmit={ handleSubmit } >
                 <h1>Login</h1>
                 <label>username:</label>
                 <input type='text'
                     required
                     name="username"
                     placeholder="your username"
-                    autoFocus={true}
-                    value={values.username}
-                    onChange={handleChange}
+                    autoFocus={ true }
+                    value={ values.username }
+                    onChange={ handleChange }
                 />
 
                 <label>Password</label>
@@ -50,9 +50,9 @@ export default function Login() {
                     required
                     name="password"
                     placeholder="Enter your password"
-                    autoFocus={true}
-                    value={values.password}
-                    onChange={handleChange}
+                    autoFocus={ true }
+                    value={ values.password }
+                    onChange={ handleChange }
                 />
 
                 <button type='submit' >
